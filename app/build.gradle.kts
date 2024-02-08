@@ -41,7 +41,6 @@ android {
     buildFeatures{
         dataBinding = true
     }
-
 }
 
 dependencies {
@@ -77,6 +76,7 @@ dependencies {
     // Lottie Animation Dependency.
     implementation("com.airbnb.android:lottie:6.0.0")
 
+    //Shimmmer Effect For Recycler view.
     implementation ("com.facebook.shimmer:shimmer:0.5.0")
     implementation ("com.todkars:shimmer-recyclerview:0.4.1")
 
