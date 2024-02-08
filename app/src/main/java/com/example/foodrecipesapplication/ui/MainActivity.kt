@@ -1,7 +1,8 @@
-package com.example.foodrecipesapplication
+package com.example.foodrecipesapplication.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.foodrecipesapplication.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
