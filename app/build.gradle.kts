@@ -81,4 +81,6 @@ dependencies {
     implementation ("com.todkars:shimmer-recyclerview:0.4.1")
 
     implementation("org.jsoup:jsoup:1.10.3")
+
+    implementation("io.ak1:bubbletabbar:1.0.8")
 }
