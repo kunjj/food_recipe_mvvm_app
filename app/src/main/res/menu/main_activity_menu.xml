@@ -5,15 +5,18 @@
         android:id="@+id/recipeFragment"
         android:title="@string/recipes"
         android:checked="true"
-        android:icon="@drawable/ic_recipe"/>
+        android:icon="@drawable/ic_recipe"
+        android:color="@color/green"/>
 
     <item
         android:id="@+id/favoriteRecipeFragment"
         android:title="@string/favorite"
-        android:icon="@drawable/ic_bookmarks"/>
+        android:icon="@drawable/ic_bookmarks"
+        android:color="@color/logger"/>
 
     <item
         android:id="@+id/foodJokesFragment"
         android:title="@string/joke"
-        android:icon="@drawable/ic_emoji_emotions"/>
+        android:icon="@drawable/ic_emoji_emotions"
+        android:color="@color/red"/>
 </menu>

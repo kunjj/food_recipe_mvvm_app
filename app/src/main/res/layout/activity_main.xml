@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/newsNavHostFragment"
+                android:id="@+id/navHostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -32,20 +32,23 @@
 
         </FrameLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <io.ak1.BubbleTabBar
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:itemHorizontalTranslationEnabled="true"
-            app:itemIconSize="32dp"
-            app:itemTextAppearanceActive="@color/black"
-            app:itemTextAppearanceActiveBoldEnabled="true"
-            app:itemTextAppearanceInactive="@color/gray"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:elevation="16dp"
+            android:padding="7dp"
+            app:bubbletab_menuResource="@menu/main_activity_menu"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/main_activity_menu" />
+            app:bubbletab_disabled_icon_color="@color/gray"
+            app:bubbletab_horizontal_padding="30dp"
+            app:bubbletab_icon_size="22dp"
+            app:bubbletab_title_size="18sp"
+            app:bubbletab_icon_padding="5sp"
+            app:bubbletab_vertical_padding="10dp"
+            app:bubbletab_tab_corner_radius="10dp">
+        </io.ak1.BubbleTabBar>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
