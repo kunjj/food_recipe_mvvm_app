@@ -1,6 +1,5 @@
 package com.example.foodrecipesapplication.network
 
-import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.utils.Constant
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
