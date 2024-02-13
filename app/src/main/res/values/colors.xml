@@ -33,7 +33,6 @@
     <color name="filter_color_unselect">#99F2F0F0</color>
 
 
-
     <color name="urgent_action">#E15757</color>
     <color name="graph_grid">#E8E8E8</color>
     <color name="spike_line_pdf">#333333</color>
@@ -58,4 +57,9 @@
     <color name="addviewcommentscolor1">#8AC43F</color>
     <color name="addviewcommentscolor2">#E15757</color>
     <color name="addviewcommentscolor3">#EBA03B</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

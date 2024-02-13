@@ -9,6 +9,7 @@ import com.example.foodrecipesapplication.R
 
 class RecipeFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
