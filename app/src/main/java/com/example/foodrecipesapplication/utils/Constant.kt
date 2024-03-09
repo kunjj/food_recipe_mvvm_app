@@ -10,19 +10,5 @@ object Constant {
 
     const val BASE_URL = "https://api.spoonacular.com"
 
-    fun hasInternetConnection(): Boolean {
-        val connectivityManager = FoodRecipeApplication.getApplicationContext()
-            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        val network = connectivityManager.activeNetwork ?: return false
-
-        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
 }
