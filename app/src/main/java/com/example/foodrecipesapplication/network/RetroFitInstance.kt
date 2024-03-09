@@ -13,5 +13,5 @@ object RetroFitInstance {
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
-    val api by lazy { retrofit.create(FoodRecipeAPI::class.java) }
+    val apiServices by lazy { retrofit.create(FoodRecipeAPI::class.java) }
 }
