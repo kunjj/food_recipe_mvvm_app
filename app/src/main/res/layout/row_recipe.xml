@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="recipe"
+            type="com.example.foodrecipesapplication.models.Recipe" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,11 +18,10 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="2dp"
+            android:layout_marginVertical="5dp"
             android:shadowColor="@color/gray"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/gray"
@@ -31,23 +33,26 @@
 
                 <ImageView
                     android:id="@+id/ivRecipe"
+                    loadImageFromUrl="@{recipe.image}"
                     android:layout_width="200dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvRecipeName"
                     tools:src="@drawable/baseline_restaurant_menu_24" />
 
                 <TextView
                     android:id="@+id/tvRecipeName"
-                    android:layout_width="0dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginVertical="7dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/courgette"
                     android:maxLines="2"
+                    android:text="@{recipe.title}"
                     android:textAlignment="viewStart"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -64,6 +69,7 @@
                     android:alpha="0.7"
                     android:ellipsize="end"
                     android:maxLines="3"
+                    android:text="@{recipe.summary}"
                     android:textAlignment="viewStart"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@id/tvRecipeName"
@@ -85,12 +91,13 @@
 
                 <TextView
                     android:id="@+id/tvLikes"
+                    numberOfLikes="@{recipe.aggregateLikes}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"
                     android:textAlignment="center"
                     android:textColor="@color/red"
-                    android:layout_marginHorizontal="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tvTimeTaken"
                     app:layout_constraintStart_toStartOf="@id/tvRecipeName"
@@ -111,12 +118,13 @@
 
                 <TextView
                     android:id="@+id/tvTimeTaken"
+                    timeToCook="@{recipe.readyInMinutes}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"
                     android:textAlignment="center"
                     android:textColor="@color/orange"
-                    android:layout_marginHorizontal="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tvVegan"
                     app:layout_constraintStart_toEndOf="@id/tvLikes"
@@ -125,6 +133,7 @@
 
                 <ImageView
                     android:id="@+id/ivVegan"
+                    isVegan="@{recipe.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -136,16 +145,17 @@
 
                 <TextView
                     android:id="@+id/tvVegan"
+                    isVegan="@{recipe.vegan}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"
+                    android:text="Vegan"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginHorizontal="15dp"
                     app:layout_constraintStart_toEndOf="@id/tvTimeTaken"
-                    app:layout_constraintTop_toBottomOf="@id/ivVegan"
-                    tools:text="10" />
+                    app:layout_constraintTop_toBottomOf="@id/ivVegan" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
