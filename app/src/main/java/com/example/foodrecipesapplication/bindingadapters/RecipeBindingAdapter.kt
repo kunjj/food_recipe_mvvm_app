@@ -1,5 +1,6 @@
 package com.example.foodrecipesapplication.bindingadapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,9 +14,13 @@ class RecipeBindingAdapter {
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, url: String) {
-            imageView.load(url) {
-                crossfade(1000)
+            Log.d("dcsdvnjkd",url)
+            if(!url.isNullOrEmpty()){
+                imageView.load(url) {
+                    crossfade(1000)
+                }
             }
+
         }
 
         @BindingAdapter("numberOfLikes")
