@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetroFitInstance {
+object NetworkModule {
 
     private val retrofit by lazy {
         val client = OkHttpClient.Builder().build()
