@@ -38,12 +38,12 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
     }
 
-    kapt{
+    kapt {
         correctErrorTypes = true
     }
 }
@@ -58,12 +58,13 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //Dagger-Hilt.
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
 
-    // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    // Navigation Components.
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -82,8 +83,8 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.0.0")
 
     //Shimmmer Effect For Recycler view.
-    implementation ("com.facebook.shimmer:shimmer:0.5.0")
-    implementation ("com.todkars:shimmer-recyclerview:0.4.1")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("com.todkars:shimmer-recyclerview:0.4.1")
 
     implementation("org.jsoup:jsoup:1.10.3")
 
