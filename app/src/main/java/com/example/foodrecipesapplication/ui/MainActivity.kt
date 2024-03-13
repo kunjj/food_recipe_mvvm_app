@@ -12,6 +12,7 @@ import com.example.foodrecipesapplication.FoodRecipeApplication
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.ActivityMainBinding
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
+import com.example.foodrecipesapplication.room.database.RecipeDatabase
 import com.example.foodrecipesapplication.viewmodelfactory.FoodRecipeViewModelFactory
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
-        val foodRecipesRepository = FoodRecipesRepository()
+        val foodRecipesRepository = FoodRecipesRepository(RecipeDatabase(this).recipesDao())
         val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this,foodRecipesRepository)
         this.foodRecipesViewModel =
             ViewModelProvider(this, foodRecipeViewModelFactory)[FoodRecipesViewModel::class.java]
