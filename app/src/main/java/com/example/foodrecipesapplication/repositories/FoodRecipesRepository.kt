@@ -10,7 +10,6 @@ class FoodRecipesRepository(private val recipesDao: RecipesDao) {
         NetworkModule.apiServices.getRandomFoodRecipes(queries)
 
     // Room Database queries.
-
     suspend fun insertFoodRecipes(foodRecipe: FoodRecipeEntity) =
         recipesDao.insertRecipes(foodRecipe)
 

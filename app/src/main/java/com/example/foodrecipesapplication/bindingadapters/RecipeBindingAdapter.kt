@@ -17,7 +17,8 @@ class RecipeBindingAdapter {
             Log.d("dcsdvnjkd",url)
             if(!url.isNullOrEmpty()){
                 imageView.load(url) {
-                    crossfade(1000)
+                    crossfade(500)
+                    error(R.drawable.baseline_restaurant_menu_24)
                 }
             }
 
