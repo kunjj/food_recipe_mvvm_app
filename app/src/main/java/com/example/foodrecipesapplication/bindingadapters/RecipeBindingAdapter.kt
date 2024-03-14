@@ -14,7 +14,6 @@ class RecipeBindingAdapter {
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, url: String) {
-            Log.d("dcsdvnjkd",url)
             if(!url.isNullOrEmpty()){
                 imageView.load(url) {
                     crossfade(500)

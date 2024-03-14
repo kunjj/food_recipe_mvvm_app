@@ -23,7 +23,7 @@ class RecipeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment.
         this.binding = FragmentRecipeBinding.inflate(inflater)
         return binding.root
     }
