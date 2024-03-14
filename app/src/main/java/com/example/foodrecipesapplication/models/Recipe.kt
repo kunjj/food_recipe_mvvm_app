@@ -1,21 +1,21 @@
 package com.example.foodrecipesapplication.models
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 data class Recipe(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int,
-    @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<AnalyzedInstruction>,
     @SerializedName("cheap")
     val cheap: Boolean,
     @SerializedName("cookingMinutes")
     val cookingMinutes: Int,
     @SerializedName("creditsText")
     val creditsText: String,
-    @SerializedName("cuisines")
-    val cuisines: List<Any>,
     @SerializedName("dairyFree")
     val dairyFree: Boolean,
     @SerializedName("diets")
@@ -42,10 +42,6 @@ data class Recipe(
     val license: String,
     @SerializedName("lowFodmap")
     val lowFodmap: Boolean,
-    @SerializedName("occasions")
-    val occasions: List<Any>,
-    @SerializedName("originalId")
-    val originalId: Any,
     @SerializedName("preparationMinutes")
     val preparationMinutes: Int,
     @SerializedName("pricePerServing")
@@ -78,4 +74,4 @@ data class Recipe(
     val veryPopular: Boolean,
     @SerializedName("weightWatcherSmartPoints")
     val weightWatcherSmartPoints: Int
-)
+) : Parcelable

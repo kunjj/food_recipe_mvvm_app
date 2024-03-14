@@ -2,4 +2,22 @@
 <resources>
     <string name="recipes">Reciepes</string>
     <string name="not_connected_to_internet">Not Connected To Internet</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="diet_type">Diet Type\n</string>
+    <string name="main_course">Main Course</string>
+    <string name="breakfast">BreakFast</string>
+    <string name="snack">Snack</string>
+    <string name="side_dish">Side Dish</string>
+    <string name="salad">Salad</string>
+    <string name="beverages">Beverages</string>
+    <string name="soup">Soup</string>
+    <string name="dessert">Dessert</string>
+    <string name="drink">Drink</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="pescetarian">Pescetarian</string>
+    <string name="paleo">Paleo</string>
+    <string name="apply">Apply</string>
 </resources>
