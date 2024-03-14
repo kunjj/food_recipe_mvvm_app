@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.adapters.FoodRecipeAdapter
 import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
@@ -16,7 +18,7 @@ import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.observeOnce
 import kotlinx.coroutines.launch
 
-class RecipeFragment : Fragment() {
+class RecipeFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentRecipeBinding
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
@@ -32,6 +34,7 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         fetchDataFromDatabase()
+        binding.btnFilterRecipe.setOnClickListener(this)
 
         foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -59,7 +62,7 @@ class RecipeFragment : Fragment() {
 
     private fun fetchDataFromDatabase() =
         lifecycleScope.launch {
-            foodRecipesViewModel.readRecipes.observeOnce{
+            foodRecipesViewModel.readRecipes.observeOnce {
                 if (it.isNotEmpty()) {
                     foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
                     stopShimmerEffect()
@@ -89,4 +92,11 @@ class RecipeFragment : Fragment() {
     private fun showShimmerEffect() = binding.recyclerView.showShimmer()
 
     private fun stopShimmerEffect() = binding.recyclerView.hideShimmer()
+    override fun onClick(view: View?) {
+        when (view!!.id) {
+            R.id.btnFilterRecipe -> {
+                findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
+            }
+        }
+    }
 }

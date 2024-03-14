@@ -42,6 +42,7 @@
                 android:id="@+id/chipMainCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/main_course"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -50,6 +51,7 @@
                 android:id="@+id/chipSnack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/snack"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -58,6 +60,7 @@
                 android:id="@+id/chipSalad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/salad"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -66,6 +69,7 @@
                 android:id="@+id/chipSoup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/soup"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -74,6 +78,7 @@
                 android:id="@+id/chipBreakFast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/breakfast"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -82,6 +87,7 @@
                 android:id="@+id/chipBeverages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/beverages"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -90,6 +96,7 @@
                 android:id="@+id/chipSideDish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/side_dish"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -98,6 +105,7 @@
                 android:id="@+id/chipDessert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/dessert"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -106,6 +114,7 @@
                 android:id="@+id/chipDrink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/drink"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -123,7 +132,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/cgMealType"
-            app:layout_constraintTop_toBottomOf="@id/cgMealType" />
+            app:layout_constraintTop_toBottomOf="@id/cgMealType"
+            app:layout_constraintBottom_toTopOf="@id/cgDietType"/>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cgDietType"
@@ -132,9 +142,9 @@
             android:layout_marginStart="20dp"
             app:checkedChip="@id/chipGlutenFree"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/tvDietType"
             app:layout_constraintTop_toBottomOf="@id/tvDietType"
+            app:layout_constraintBottom_toTopOf="@id/btnApply"
             app:selectionRequired="true"
             app:singleLine="false"
             app:singleSelection="true">
@@ -143,6 +153,7 @@
                 android:id="@+id/chipGlutenFree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/gluten_free"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -151,6 +162,7 @@
                 android:id="@+id/chipVegetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/vegetarian"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -159,6 +171,7 @@
                 android:id="@+id/chipVegan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/vegan"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -167,6 +180,7 @@
                 android:id="@+id/chipKetogenic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/ketogenic"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -175,6 +189,7 @@
                 android:id="@+id/chipPescetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/pescetarian"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
@@ -183,12 +198,14 @@
                 android:id="@+id/chipPaleo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:text="@string/paleo"
                 android:textSize="16sp"
                 app:chipCornerRadius="20dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
