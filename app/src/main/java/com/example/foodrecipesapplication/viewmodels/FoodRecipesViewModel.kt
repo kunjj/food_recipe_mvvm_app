@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.foodrecipesapplication.FoodRecipeApplication
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.NetworkResponse
@@ -56,16 +55,15 @@ class FoodRecipesViewModel(
     private fun handleResponse(response: Response<FoodRecipe>): NetworkResponse<FoodRecipe> {
         return when {
             response.message().contains("timeout") -> NetworkResponse.Error(
-                FoodRecipeApplication.getApplicationContext().getString(R.string.connection_timeout)
+                context.getString(R.string.connection_timeout)
             )
 
             response.code() == 402 -> NetworkResponse.Error(
-                FoodRecipeApplication.getApplicationContext()
-                    .getString(R.string.try_after_sometimes)
+                context.getString(R.string.try_after_sometimes)
             )
 
-            response.body()!!.recipes.isEmpty() -> NetworkResponse.Error(
-                FoodRecipeApplication.getApplicationContext().getString(R.string.no_recipes_found)
+            response.body()!!.recipes.isNullOrEmpty() -> NetworkResponse.Error(
+                context.applicationContext.getString(R.string.no_recipes_found)
             )
 
             response.isSuccessful -> NetworkResponse.Success(response.body()!!)

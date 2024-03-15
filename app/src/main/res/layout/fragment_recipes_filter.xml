@@ -131,9 +131,9 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/cgDietType"
             app:layout_constraintStart_toStartOf="@id/cgMealType"
-            app:layout_constraintTop_toBottomOf="@id/cgMealType"
-            app:layout_constraintBottom_toTopOf="@id/cgDietType"/>
+            app:layout_constraintTop_toBottomOf="@id/cgMealType" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cgDietType"
@@ -141,10 +141,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             app:checkedChip="@id/chipGlutenFree"
+            app:layout_constraintBottom_toTopOf="@id/btnApply"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvDietType"
             app:layout_constraintTop_toBottomOf="@id/tvDietType"
-            app:layout_constraintBottom_toTopOf="@id/btnApply"
             app:selectionRequired="true"
             app:singleLine="false"
             app:singleSelection="true">
@@ -214,6 +214,7 @@
             android:textColor="@color/green"
             android:textSize="16dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cgDietType" />
