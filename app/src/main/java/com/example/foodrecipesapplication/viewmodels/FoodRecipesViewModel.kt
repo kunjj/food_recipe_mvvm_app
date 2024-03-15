@@ -44,7 +44,7 @@ class FoodRecipesViewModel(
             val foodRecipes = foodRecipesResponse.value!!.data
             if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
         } else foodRecipesResponse.value = NetworkResponse.Error(
-            FoodRecipeApplication.getApplicationContext().getString(
+            context.getString(
                 R.string.not_connected_to_internet
             )
         )

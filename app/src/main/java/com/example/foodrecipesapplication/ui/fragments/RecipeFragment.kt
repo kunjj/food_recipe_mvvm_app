@@ -16,6 +16,7 @@ import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.ui.MainActivity
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.observeOnce
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment(), View.OnClickListener {
@@ -46,7 +47,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
                 is NetworkResponse.Error -> {
                     stopShimmerEffect()
                     loadDataFromCache()
-                    Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
+                    response.message?.let { Snackbar.make(view, it,Snackbar.LENGTH_SHORT).show() }
                 }
 
                 is NetworkResponse.Loading -> showShimmerEffect()
