@@ -89,6 +89,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         val queries = HashMap<String, String>()
         queries["apiKey"] = Constant.API_KEY
         queries["number"] = "50"
+        queries["addRecipeInformation"] = "true"
         return queries
     }
 

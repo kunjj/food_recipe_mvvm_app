@@ -8,6 +8,6 @@ import retrofit2.http.QueryMap
 
 interface FoodRecipeAPI {
 
-    @GET("/recipes/random")
+    @GET("/recipes/complexSearch?")
     suspend fun getRandomFoodRecipes(@QueryMap queries: Map<String,String>): Response<FoodRecipe>
 }

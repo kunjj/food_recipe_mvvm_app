@@ -62,7 +62,7 @@ class FoodRecipesViewModel(
                 context.getString(R.string.try_after_sometimes)
             )
 
-            response.body()!!.recipes.isNullOrEmpty() -> NetworkResponse.Error(
+            response.body()?.recipes.isNullOrEmpty() -> NetworkResponse.Error(
                 context.applicationContext.getString(R.string.no_recipes_found)
             )
 
