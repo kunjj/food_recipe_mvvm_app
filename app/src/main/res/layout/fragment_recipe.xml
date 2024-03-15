@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="recipesViewModel"
+            type="com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,9 +24,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shimmer_recycler_layout="@layout/placeholder_row_recipe"
             tools:itemCount="3"
-            tools:listitem="@layout/placeholder_row_recipe"
-            app:shimmer_recycler_layout="@layout/placeholder_row_recipe" />
+            tools:listitem="@layout/placeholder_row_recipe" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnFilterRecipe"
@@ -39,6 +42,8 @@
 
         <LinearLayout
             android:id="@+id/llNotConnectedToInternet"
+            apiResponse="@{recipesViewModel.foodRecipesResponse}"
+            database="@{recipesViewModel.readRecipes}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

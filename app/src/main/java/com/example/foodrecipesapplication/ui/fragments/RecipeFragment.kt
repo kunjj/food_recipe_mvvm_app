@@ -20,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment(), View.OnClickListener {
-    private lateinit var binding: FragmentRecipeBinding
+    private var binding: FragmentRecipeBinding? = null
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
     override fun onCreateView(
@@ -28,14 +28,16 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     ): View {
         // Inflate the layout for this fragment.
         this.binding = FragmentRecipeBinding.inflate(inflater)
-        return binding.root
+        this.binding!!.recipesViewModel = this.foodRecipesViewModel
+        this.binding!!.lifecycleOwner = this
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         fetchDataFromDatabase()
-        binding.btnFilterRecipe.setOnClickListener(this)
+        binding!!.btnFilterRecipe.setOnClickListener(this)
 
         foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -55,7 +57,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setUpRecyclerView() = binding.recyclerView.apply {
+    private fun setUpRecyclerView() = binding!!.recyclerView.apply {
         adapter = this@RecipeFragment.foodRecipeAdapter
         layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         showShimmerEffect()
@@ -90,14 +92,19 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         return queries
     }
 
-    private fun showShimmerEffect() = binding.recyclerView.showShimmer()
+    private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 
-    private fun stopShimmerEffect() = binding.recyclerView.hideShimmer()
+    private fun stopShimmerEffect() = binding!!.recyclerView.hideShimmer()
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.btnFilterRecipe -> {
                 findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.binding = null
     }
 }
