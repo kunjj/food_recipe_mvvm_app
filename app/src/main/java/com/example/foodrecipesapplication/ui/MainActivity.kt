@@ -1,6 +1,5 @@
 package com.example.foodrecipesapplication.ui
 
-import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -8,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.example.foodrecipesapplication.FoodRecipeApplication
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.ActivityMainBinding
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
         val foodRecipesRepository = FoodRecipesRepository(RecipeDatabase(this).recipesDao())
-        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this,foodRecipesRepository)
+        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this, foodRecipesRepository)
         this.foodRecipesViewModel =
             ViewModelProvider(this, foodRecipeViewModelFactory)[FoodRecipesViewModel::class.java]
     }

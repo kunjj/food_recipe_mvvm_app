@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -49,7 +48,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
                 is NetworkResponse.Error -> {
                     stopShimmerEffect()
                     loadDataFromCache()
-                    response.message?.let { Snackbar.make(view, it,Snackbar.LENGTH_SHORT).show() }
+                    response.message?.let { Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
                 }
 
                 is NetworkResponse.Loading -> showShimmerEffect()
@@ -87,9 +86,10 @@ class RecipeFragment : Fragment(), View.OnClickListener {
 
     private fun queries(): HashMap<String, String> {
         val queries = HashMap<String, String>()
-        queries["apiKey"] = Constant.API_KEY
-        queries["number"] = "50"
-        queries["addRecipeInformation"] = "true"
+        queries[Constant.QUERY_API_KEY] = Constant.API_KEY
+        queries[Constant.QUERY_PAGE_NUMBER] = "100"
+        queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
+        queries[Constant.QUERY_MEAL_TYPE] = "dessert"
         return queries
     }
 

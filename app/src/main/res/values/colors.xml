@@ -30,4 +30,8 @@
 
     <color name="yellow">#FFFF00</color>
     <color name="orange">#FF9209</color>
+
+    <color name="checkedChipColor">#206200EA</color>
+    <color name="checkedChipTextColor">#6200EA</color>
+    <color name="uncheckedChipColor">#DDDDDD</color>
 </resources>

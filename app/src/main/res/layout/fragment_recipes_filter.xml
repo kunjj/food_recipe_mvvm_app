@@ -40,86 +40,84 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipMainCourse"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/main_course"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSnack"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/snack"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSalad"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/salad"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSoup"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/soup"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipBreakFast"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/breakfast"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipBeverages"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/beverages"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSideDish"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/side_dish"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDessert"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/dessert"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDrink"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/drink"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
-
-
+                app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
@@ -151,57 +149,57 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipGlutenFree"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/gluten_free"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipVegetarian"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/vegetarian"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipVegan"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/vegan"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipKetogenic"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/ketogenic"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPescetarian"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/pescetarian"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPaleo"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:text="@string/paleo"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.appcompat.widget.AppCompatButton
