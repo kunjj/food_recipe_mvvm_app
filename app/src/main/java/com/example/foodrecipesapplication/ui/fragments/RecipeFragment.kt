@@ -16,6 +16,7 @@ import com.example.foodrecipesapplication.ui.MainActivity
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.observeOnce
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment(), View.OnClickListener {
@@ -64,6 +65,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
 
     private fun fetchDataFromDatabase() =
         lifecycleScope.launch {
+            delay(750)
             foodRecipesViewModel.readRecipes.observeOnce {
                 if (it.isNotEmpty()) {
                     foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
@@ -74,6 +76,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
 
     private fun loadDataFromCache() =
         lifecycleScope.launch {
+            delay(750)
             foodRecipesViewModel.readRecipes.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
@@ -89,7 +92,6 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         queries[Constant.QUERY_API_KEY] = Constant.API_KEY
         queries[Constant.QUERY_PAGE_NUMBER] = "100"
         queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
-        queries[Constant.QUERY_MEAL_TYPE] = "dessert"
         return queries
     }
 
