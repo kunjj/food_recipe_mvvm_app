@@ -7,21 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.adapters.FoodRecipeAdapter
 import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.ui.MainActivity
-import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.observeOnce
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RecipeFragment : Fragment(), View.OnClickListener {
+    private val args by navArgs<RecipeFragmentArgs>()
     private var binding: FragmentRecipeBinding? = null
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
+    private val recipeViewModel by lazy { (activity as MainActivity).recipeViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -70,7 +72,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         lifecycleScope.launch {
             delay(750)
             foodRecipesViewModel.readRecipes.observeOnce {
-                if (it.isNotEmpty()) {
+                if (it.isNotEmpty() && !args.fromRecipeFilterFragment) {
                     foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
                     stopShimmerEffect()
                 } else fetchDataFromApi()
@@ -88,17 +90,9 @@ class RecipeFragment : Fragment(), View.OnClickListener {
             }
         }
 
-    private fun fetchDataFromApi() = foodRecipesViewModel.getRandomRecipes(queries())
+    private fun fetchDataFromApi() =
+        foodRecipesViewModel.getRandomRecipes(recipeViewModel.queries())
 
-    private fun queries(): HashMap<String, String> {
-        val queries = HashMap<String, String>()
-        queries[Constant.QUERY_API_KEY] = Constant.API_KEY
-        queries[Constant.QUERY_PAGE_NUMBER] = Constant.DEFAULT_PAGE_NUMBER
-        queries[Constant.QUERY_MEAL_TYPE] = Constant.DEFAULT_MEAL_TYPE
-        queries[Constant.QUERY_DIET_TYPE] = Constant.DEFAULT_DIET_TYPE
-        queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
-        return queries
-    }
 
     private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 

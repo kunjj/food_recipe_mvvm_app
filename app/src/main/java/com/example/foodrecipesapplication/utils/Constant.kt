@@ -21,4 +21,11 @@ object Constant {
     const val DEFAULT_PAGE_NUMBER = "100"
     const val DEFAULT_MEAL_TYPE = "main course"
     const val DEFAULT_DIET_TYPE = "gluten free"
+
+    //For DataStore Preference.
+    const val RECIPE_TYPE = "Food Recipe"
+    const val MEAL_TYPE = "mealType"
+    const val MEAL_TYPE_ID = "mealTypeId"
+    const val DIET_TYPE = "dietType"
+    const val DIET_TYPE_ID = "dietTypeId"
 }
