@@ -40,77 +40,84 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipMainCourse"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_course"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSnack"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/snack"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSalad"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/salad"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSoup"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/soup"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipBreakFast"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/breakfast"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipBeverages"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/beverages"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipSideDish"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/side_dish"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDessert"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dessert"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDrink"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/drink"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
-
-
+                app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
@@ -122,6 +129,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/cgDietType"
             app:layout_constraintStart_toStartOf="@id/cgMealType"
             app:layout_constraintTop_toBottomOf="@id/cgMealType" />
 
@@ -131,8 +139,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             app:checkedChip="@id/chipGlutenFree"
+            app:layout_constraintBottom_toTopOf="@id/btnApply"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/tvDietType"
             app:layout_constraintTop_toBottomOf="@id/tvDietType"
             app:selectionRequired="true"
@@ -141,54 +149,61 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipGlutenFree"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/gluten_free"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipVegetarian"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vegetarian"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipVegan"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vegan"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipKetogenic"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ketogenic"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPescetarian"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pescetarian"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPaleo"
+                style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/paleo"
                 android:textSize="16sp"
-                app:chipCornerRadius="20dp" />
+                app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
@@ -197,6 +212,7 @@
             android:textColor="@color/green"
             android:textSize="16dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cgDietType" />

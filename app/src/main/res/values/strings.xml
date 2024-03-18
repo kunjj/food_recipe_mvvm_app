@@ -12,13 +12,13 @@
     <string name="try_after_sometimes">Try After Sometimes.</string>
     <string name="no_recipes_found">No Recipes Found.</string>
     <string name="meal_type">Meal Type</string>
-    <string name="diet_type">Diet Type\n</string>
+    <string name="diet_type">Diet Type</string>
     <string name="main_course">Main Course</string>
     <string name="breakfast">BreakFast</string>
     <string name="snack">Snack</string>
     <string name="side_dish">Side Dish</string>
     <string name="salad">Salad</string>
-    <string name="beverages">Beverages</string>
+    <string name="beverages">Beverage</string>
     <string name="soup">Soup</string>
     <string name="dessert">Dessert</string>
     <string name="drink">Drink</string>
