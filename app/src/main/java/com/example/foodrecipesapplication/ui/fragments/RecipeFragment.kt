@@ -49,7 +49,10 @@ class RecipeFragment : Fragment(), View.OnClickListener {
                 is NetworkResponse.Error -> {
                     stopShimmerEffect()
                     loadDataFromCache()
-                    response.message?.let { Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet))
+                        response.message?.let {
+                            Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show()
+                        }
                 }
 
                 is NetworkResponse.Loading -> showShimmerEffect()
@@ -77,7 +80,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     private fun loadDataFromCache() =
         lifecycleScope.launch {
             delay(750)
-            foodRecipesViewModel.readRecipes.observe(viewLifecycleOwner) {
+            foodRecipesViewModel.readRecipes.observe(requireActivity()) {
                 if (it.isNotEmpty()) {
                     foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
                     stopShimmerEffect()
@@ -90,7 +93,9 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     private fun queries(): HashMap<String, String> {
         val queries = HashMap<String, String>()
         queries[Constant.QUERY_API_KEY] = Constant.API_KEY
-        queries[Constant.QUERY_PAGE_NUMBER] = "100"
+        queries[Constant.QUERY_PAGE_NUMBER] = Constant.DEFAULT_PAGE_NUMBER
+        queries[Constant.QUERY_MEAL_TYPE] = Constant.DEFAULT_MEAL_TYPE
+        queries[Constant.QUERY_DIET_TYPE] = Constant.DEFAULT_DIET_TYPE
         queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
         return queries
     }

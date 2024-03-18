@@ -21,7 +21,7 @@ class RecipeBindingAdapter {
             apiResponse: NetworkResponse<FoodRecipe>?,
             database: List<FoodRecipeEntity>?
         ) {
-            if (apiResponse != null && database.isNullOrEmpty()) linearLayout.visibility =
+            if (apiResponse != null && apiResponse is NetworkResponse.Error && database.isNullOrEmpty()) linearLayout.visibility =
                 View.VISIBLE
             else
                 linearLayout.visibility = View.INVISIBLE
