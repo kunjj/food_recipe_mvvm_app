@@ -1,8 +1,9 @@
-package com.example.foodrecipesapplication.viewmodels
+package com.example.foodrecipesapplication.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodrecipesapplication.utils.DataStoreHelper
+import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
 
 class RecipeViewModelFactory(
     private val dataStoreHelper: DataStoreHelper

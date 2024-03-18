@@ -15,7 +15,7 @@ import com.example.foodrecipesapplication.utils.DataStoreHelper
 import com.example.foodrecipesapplication.viewmodelfactory.FoodRecipeViewModelFactory
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
-import com.example.foodrecipesapplication.viewmodels.RecipeViewModelFactory
+import com.example.foodrecipesapplication.viewmodelfactory.RecipeViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
