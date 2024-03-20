@@ -13,13 +13,16 @@ import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
+import com.example.foodrecipesapplication.utils.NetworkListener
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class FoodRecipesViewModel(
     private val context: Context,
-    private val foodRecipesRepository: FoodRecipesRepository
+    private val foodRecipesRepository: FoodRecipesRepository,
+    private val networkListener: NetworkListener
 ) : ViewModel() {
     var foodRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
 
@@ -37,16 +40,19 @@ class FoodRecipesViewModel(
 
     private suspend fun getSafeApiCall(queries: Map<String, String>) {
         foodRecipesResponse.value = NetworkResponse.Loading()
-        if (hasInternetConnection()) {
-            val response = foodRecipesRepository.getRandomRecipes(queries)
-            foodRecipesResponse.value = handleResponse(response)
-            val foodRecipes = foodRecipesResponse.value!!.data
-            if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
-        } else foodRecipesResponse.value = NetworkResponse.Error(
-            context.getString(
-                R.string.not_connected_to_internet
+        networkListener.checkNetworkAvailability(context).collect{status ->
+            if(status){
+                val response = foodRecipesRepository.getRandomRecipes(queries)
+                foodRecipesResponse.value = handleResponse(response)
+                val foodRecipes = foodRecipesResponse.value!!.data
+                if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
+            }
+            else foodRecipesResponse.value = NetworkResponse.Error(
+                context.getString(
+                    R.string.not_connected_to_internet
+                )
             )
-        )
+        }
     }
 
     private fun offlineCacheRecipes(foodRecipes: FoodRecipe) =
@@ -69,22 +75,6 @@ class FoodRecipesViewModel(
             response.isSuccessful -> NetworkResponse.Success(response.body()!!)
 
             else -> NetworkResponse.Error(response.message())
-        }
-    }
-
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        val network = connectivityManager.activeNetwork ?: return false
-
-        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
         }
     }
 }

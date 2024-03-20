@@ -1,6 +1,7 @@
 package com.example.foodrecipesapplication.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,8 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
     private val recipeViewModel by lazy { (activity as MainActivity).recipeViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
+    private val networkListener by lazy { (activity as MainActivity).networkListener }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -40,6 +43,12 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         setUpRecyclerView()
         fetchDataFromDatabase()
         binding!!.btnFilterRecipe.setOnClickListener(this)
+
+        lifecycleScope.launch {
+            networkListener.checkNetworkAvailability(requireContext()).collect { status ->
+                Log.d("dcaacf", status.toString())
+            }
+        }
 
         foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -100,7 +109,9 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.btnFilterRecipe -> {
-                findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
+                // There are 2 ways to navigate from one fragment to another.
+                findNavController().navigate(RecipeFragmentDirections.actionRecipeFragmentToRecipesFilterFragment())
+//                findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
             }
         }
     }
