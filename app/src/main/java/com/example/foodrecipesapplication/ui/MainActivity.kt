@@ -12,6 +12,7 @@ import com.example.foodrecipesapplication.databinding.ActivityMainBinding
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
 import com.example.foodrecipesapplication.room.database.RecipeDatabase
 import com.example.foodrecipesapplication.utils.DataStoreHelper
+import com.example.foodrecipesapplication.utils.NetworkListener
 import com.example.foodrecipesapplication.viewmodelfactory.FoodRecipeViewModelFactory
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
@@ -23,13 +24,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var foodRecipesViewModel: FoodRecipesViewModel
     lateinit var recipeViewModel: RecipeViewModel
+    val networkListener: NetworkListener by lazy { NetworkListener() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
         val foodRecipesRepository = FoodRecipesRepository(RecipeDatabase(this).recipesDao())
-        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this, foodRecipesRepository)
+        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this, foodRecipesRepository, networkListener)
         this.foodRecipesViewModel =
             ViewModelProvider(this, foodRecipeViewModelFactory)[FoodRecipesViewModel::class.java]
         val recipeViewModelFactory = RecipeViewModelFactory(DataStoreHelper(this))
