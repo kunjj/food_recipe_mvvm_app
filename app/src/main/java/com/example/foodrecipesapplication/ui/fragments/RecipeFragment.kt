@@ -47,7 +47,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         binding!!.btnFilterRecipe.setOnClickListener(this)
 
         lifecycleScope.launch {
-            networkListener.checkNetworkAvailability(requireContext()).collect { status ->
+            networkListener.isConnectedToInternet(requireContext()).collect { status ->
                 Log.d("dcaacf", status.toString())
             }
         }

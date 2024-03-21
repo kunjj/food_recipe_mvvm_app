@@ -41,7 +41,7 @@ class FoodRecipesViewModel @Inject constructor(
 
     private suspend fun getSafeApiCall(queries: Map<String, String>) {
         foodRecipesResponse.value = NetworkResponse.Loading()
-        networkListener.checkNetworkAvailability(context).collect { status ->
+        networkListener.isConnectedToInternet(context).collect { status ->
             if (status) {
                 val response = foodRecipesRepository.getRandomRecipes(queries)
                 foodRecipesResponse.value = handleResponse(response)
