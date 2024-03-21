@@ -1,6 +1,7 @@
 package com.example.foodrecipesapplication.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
@@ -9,20 +10,18 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.ActivityMainBinding
-import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
-import com.example.foodrecipesapplication.room.database.RecipeDatabase
+import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.utils.DataStoreHelper
-import com.example.foodrecipesapplication.utils.NetworkListener
-import com.example.foodrecipesapplication.viewmodelfactory.FoodRecipeViewModelFactory
+import com.example.foodrecipesapplication.viewmodelfactory.RecipeViewModelFactory
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
-import com.example.foodrecipesapplication.viewmodelfactory.RecipeViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    lateinit var foodRecipesViewModel: FoodRecipesViewModel
+    val foodRecipesViewModel: FoodRecipesViewModel by viewModels()
     lateinit var recipeViewModel: RecipeViewModel
     val networkListener: NetworkListener by lazy { NetworkListener() }
 
@@ -30,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
-        val foodRecipesRepository = FoodRecipesRepository(RecipeDatabase(this).recipesDao())
-        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this, foodRecipesRepository, networkListener)
-        this.foodRecipesViewModel =
-            ViewModelProvider(this, foodRecipeViewModelFactory)[FoodRecipesViewModel::class.java]
         val recipeViewModelFactory = RecipeViewModelFactory(DataStoreHelper(this))
         this.recipeViewModel =
             ViewModelProvider(this, recipeViewModelFactory)[RecipeViewModel::class.java]

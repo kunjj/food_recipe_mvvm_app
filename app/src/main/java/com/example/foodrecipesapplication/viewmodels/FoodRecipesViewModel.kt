@@ -1,8 +1,6 @@
 package com.example.foodrecipesapplication.viewmodels
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,20 +8,23 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.models.FoodRecipe
+import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
-import com.example.foodrecipesapplication.utils.NetworkListener
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class FoodRecipesViewModel(
-    private val context: Context,
-    private val foodRecipesRepository: FoodRecipesRepository,
-    private val networkListener: NetworkListener
+@HiltViewModel
+class FoodRecipesViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val foodRecipesRepository: FoodRecipesRepository
 ) : ViewModel() {
+    private val networkListener: NetworkListener = NetworkListener()
     var foodRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
 
     val readRecipes: LiveData<List<FoodRecipeEntity>> =
@@ -40,14 +41,13 @@ class FoodRecipesViewModel(
 
     private suspend fun getSafeApiCall(queries: Map<String, String>) {
         foodRecipesResponse.value = NetworkResponse.Loading()
-        networkListener.checkNetworkAvailability(context).collect{status ->
-            if(status){
+        networkListener.isConnectedToInternet(context).collect { status ->
+            if (status) {
                 val response = foodRecipesRepository.getRandomRecipes(queries)
                 foodRecipesResponse.value = handleResponse(response)
                 val foodRecipes = foodRecipesResponse.value!!.data
                 if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
-            }
-            else foodRecipesResponse.value = NetworkResponse.Error(
+            } else foodRecipesResponse.value = NetworkResponse.Error(
                 context.getString(
                     R.string.not_connected_to_internet
                 )

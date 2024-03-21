@@ -1,11 +1,7 @@
 package com.example.foodrecipesapplication
 
 import android.app.Application
-import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
-class FoodRecipeApplication : Application() {
-
-    companion object {
-        fun getApplicationContext(): Context = FoodRecipeApplication().applicationContext
-    }
-}
+@HiltAndroidApp
+class FoodRecipeApplication : Application()

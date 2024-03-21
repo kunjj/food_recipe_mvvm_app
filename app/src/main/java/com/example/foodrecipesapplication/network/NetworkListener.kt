@@ -1,4 +1,4 @@
-package com.example.foodrecipesapplication.utils
+package com.example.foodrecipesapplication.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -7,9 +7,9 @@ import android.net.NetworkCapabilities
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class NetworkListener : ConnectivityManager.NetworkCallback() {
-    var isNetworkAvailable = MutableStateFlow(false)
+    private var isNetworkAvailable = MutableStateFlow(false)
 
-    fun checkNetworkAvailability(context: Context): MutableStateFlow<Boolean> {
+    fun isConnectedToInternet(context: Context): MutableStateFlow<Boolean> {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.registerDefaultNetworkCallback(this)
@@ -18,6 +18,7 @@ class NetworkListener : ConnectivityManager.NetworkCallback() {
 
         val capabilities =
             connectivityManager.getNetworkCapabilities(network) ?: return isNetworkAvailable
+
         return when {
             capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) -> {
                 isNetworkAvailable.value = true
