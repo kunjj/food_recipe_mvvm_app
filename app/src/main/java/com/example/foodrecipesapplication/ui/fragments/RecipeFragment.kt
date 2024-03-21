@@ -17,9 +17,10 @@ import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.ui.MainActivity
 import com.example.foodrecipesapplication.utils.observeOnce
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class RecipeFragment : Fragment(), View.OnClickListener {
     private val args by navArgs<RecipeFragmentArgs>()
     private var binding: FragmentRecipeBinding? = null
@@ -101,7 +102,6 @@ class RecipeFragment : Fragment(), View.OnClickListener {
 
     private fun fetchDataFromApi() =
         foodRecipesViewModel.getRandomRecipes(recipeViewModel.queries())
-
 
     private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 

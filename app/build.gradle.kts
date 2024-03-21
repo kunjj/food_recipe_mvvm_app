@@ -62,6 +62,7 @@ dependencies {
     //Dagger-Hilt.
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
     // Navigation Components.
     implementation(libs.androidx.navigation.fragment.ktx)
