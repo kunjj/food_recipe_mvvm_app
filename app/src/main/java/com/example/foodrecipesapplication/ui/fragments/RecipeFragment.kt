@@ -1,11 +1,9 @@
 package com.example.foodrecipesapplication.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,13 +14,12 @@ import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.ui.MainActivity
 import com.example.foodrecipesapplication.utils.observeOnce
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipeFragment : Fragment(), View.OnClickListener {
+class RecipeFragment : BaseFragment(), View.OnClickListener {
     private val args by navArgs<RecipeFragmentArgs>()
     private var binding: FragmentRecipeBinding? = null
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
@@ -46,12 +43,6 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         fetchDataFromDatabase()
         binding!!.btnFilterRecipe.setOnClickListener(this)
 
-        lifecycleScope.launch {
-            networkListener.isConnectedToInternet(requireContext()).collect { status ->
-                Log.d("dcaacf", status.toString())
-            }
-        }
-
         foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResponse.Success -> {
@@ -62,10 +53,9 @@ class RecipeFragment : Fragment(), View.OnClickListener {
                 is NetworkResponse.Error -> {
                     stopShimmerEffect()
                     loadDataFromCache()
-                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet))
-                        response.message?.let {
-                            Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show()
-                        }
+                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet)) response.message?.let {
+                        showSnackBar(view, it)
+                    }
                 }
 
                 is NetworkResponse.Loading -> showShimmerEffect()
@@ -79,27 +69,25 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         showShimmerEffect()
     }
 
-    private fun fetchDataFromDatabase() =
-        lifecycleScope.launch {
-            delay(750)
-            foodRecipesViewModel.readRecipes.observeOnce {
-                if (it.isNotEmpty() && !args.fromRecipeFilterFragment) {
-                    foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
-                    stopShimmerEffect()
-                } else fetchDataFromApi()
-            }
+    private fun fetchDataFromDatabase() = lifecycleScope.launch {
+        delay(750)
+        foodRecipesViewModel.readRecipes.observeOnce {
+            if (it.isNotEmpty() && !args.fromRecipeFilterFragment) {
+                foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
+                stopShimmerEffect()
+            } else fetchDataFromApi()
         }
+    }
 
-    private fun loadDataFromCache() =
-        lifecycleScope.launch {
-            delay(750)
-            foodRecipesViewModel.readRecipes.observe(requireActivity()) {
-                if (it.isNotEmpty()) {
-                    foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
-                    stopShimmerEffect()
-                }
+    private fun loadDataFromCache() = lifecycleScope.launch {
+        delay(750)
+        foodRecipesViewModel.readRecipes.observe(requireActivity()) {
+            if (it.isNotEmpty()) {
+                foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
+                stopShimmerEffect()
             }
         }
+    }
 
     private fun fetchDataFromApi() =
         foodRecipesViewModel.getRandomRecipes(recipeViewModel.queries())
@@ -111,8 +99,15 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         when (view!!.id) {
             R.id.btnFilterRecipe -> {
                 // There are 2 ways to navigate from one fragment to another.
-                findNavController().navigate(RecipeFragmentDirections.actionRecipeFragmentToRecipesFilterFragment())
-//                findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
+                //1.findNavController().navigate(RecipeFragmentDirections.actionRecipeFragmentToRecipesFilterFragment())
+                //2.findNavController().navigate(R.id.action_recipeFragment_to_recipesFilterFragment)
+                if (recipeViewModel.isConnectedToInternet) findNavController().navigate(
+                    RecipeFragmentDirections.actionRecipeFragmentToRecipesFilterFragment()
+                )
+                else showSnackBar(
+                    view,
+                    requireContext().getString(R.string.not_connected_to_internet)
+                )
             }
         }
     }

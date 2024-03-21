@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.foodrecipesapplication.R
@@ -16,6 +17,7 @@ import com.example.foodrecipesapplication.viewmodelfactory.RecipeViewModelFactor
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
-        val recipeViewModelFactory = RecipeViewModelFactory(DataStoreHelper(this))
+        val recipeViewModelFactory = RecipeViewModelFactory(this, DataStoreHelper(this))
         this.recipeViewModel =
             ViewModelProvider(this, recipeViewModelFactory)[RecipeViewModel::class.java]
     }
@@ -45,6 +47,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.favoriteRecipeFragment -> navController.navigate(R.id.favoriteRecipeFragment)
                 R.id.foodJokesFragment -> navController.navigate(R.id.foodJokesFragment)
             }
+        }
+
+        lifecycleScope.launch {
+            this@MainActivity.networkListener.isConnectedToInternet(this@MainActivity)
+                .collect { status ->
+                    recipeViewModel.isConnectedToInternet = status
+                }
         }
     }
 }
