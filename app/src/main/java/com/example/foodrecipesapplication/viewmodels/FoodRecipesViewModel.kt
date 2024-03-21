@@ -8,10 +8,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.models.FoodRecipe
+import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
-import com.example.foodrecipesapplication.network.NetworkListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers

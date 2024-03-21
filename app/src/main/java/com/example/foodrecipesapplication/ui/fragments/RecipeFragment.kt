@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class RecipeFragment : Fragment(), View.OnClickListener {
     private val args by navArgs<RecipeFragmentArgs>()

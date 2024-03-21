@@ -10,8 +10,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.ActivityMainBinding
-import com.example.foodrecipesapplication.utils.DataStoreHelper
 import com.example.foodrecipesapplication.network.NetworkListener
+import com.example.foodrecipesapplication.utils.DataStoreHelper
 import com.example.foodrecipesapplication.viewmodelfactory.RecipeViewModelFactory
 import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
-//        val foodRecipesRepository = FoodRecipesRepository(RecipeDatabase(this).recipesDao())
-//        val foodRecipeViewModelFactory = FoodRecipeViewModelFactory(this, foodRecipesRepository, networkListener)
-//        this.foodRecipesViewModel =
-//            ViewModelProvider(this, foodRecipeViewModelFactory)[FoodRecipesViewModel::class.java]
         val recipeViewModelFactory = RecipeViewModelFactory(DataStoreHelper(this))
         this.recipeViewModel =
             ViewModelProvider(this, recipeViewModelFactory)[RecipeViewModel::class.java]
