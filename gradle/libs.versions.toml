@@ -24,6 +24,7 @@ navigationUiKtx = "2.7.7"
 navigationFragmentKtx = "2.7.7"
 shimmerRecyclerview = "0.4.1"
 shimmer = "0.5.0"
+kotlin = "1.9.22"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -53,3 +54,4 @@ shimmer-recyclerview = { module = "com.todkars:shimmer-recyclerview", version.re
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 
 [plugins]
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

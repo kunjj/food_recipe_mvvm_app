@@ -1,17 +1,22 @@
 package com.example.foodrecipesapplication.viewmodels
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.DataStoreHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(
+    private val context: Context,
     private val dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
     private var mealType = Constant.DEFAULT_MEAL_TYPE
     private var dietType = Constant.DEFAULT_DIET_TYPE
+    var isConnectedToInternet = false
 
     val readMealAndType = dataStoreHelper.readMealAndDietType.also {
         viewModelScope.launch(Dispatchers.IO) {
