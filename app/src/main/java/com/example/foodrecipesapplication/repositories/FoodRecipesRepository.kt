@@ -11,12 +11,14 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class FoodRecipesRepository @Inject constructor(
-    private val foodRecipeAPI: FoodRecipeAPI,
-    private val recipesDao: RecipesDao
+    private val foodRecipeAPI: FoodRecipeAPI, private val recipesDao: RecipesDao
 ) {
     //Remote DataSource.
     suspend fun getRandomRecipes(queries: Map<String, String>): Response<FoodRecipe> =
         foodRecipeAPI.getRandomFoodRecipes(queries)
+
+    suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> =
+        foodRecipeAPI.getSearchedFoodRecipes(searchQuery)
 
     // Room Database queries.
     suspend fun insertFoodRecipes(foodRecipe: FoodRecipeEntity) =

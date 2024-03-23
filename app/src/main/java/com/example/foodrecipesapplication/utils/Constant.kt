@@ -13,6 +13,7 @@ object Constant {
     const val QUERY_PAGE_NUMBER = "number"
     const val QUERY_MEAL_TYPE = "type"
     const val QUERY_DIET_TYPE = "diet"
+    const val QUERY_SEARCH = "query"
     const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
     const val FILL_INGREDIENTS = "fillIngredients"
     const val QUERY_INSTRUCTION_REQUIRED = "instructionsRequired"
