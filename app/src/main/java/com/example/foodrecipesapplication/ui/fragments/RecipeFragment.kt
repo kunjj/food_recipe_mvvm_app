@@ -16,7 +16,6 @@ import com.example.foodrecipesapplication.adapters.FoodRecipeAdapter
 import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.ui.MainActivity
-import com.example.foodrecipesapplication.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,7 +27,6 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
     private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
     private val recipeViewModel by lazy { (activity as MainActivity).recipeViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
-    private val networkListener by lazy { (activity as MainActivity).networkListener }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -48,24 +46,6 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         fetchDataFromDatabase()
         binding!!.btnFilterRecipe.setOnClickListener(this)
 
-        foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is NetworkResponse.Success -> {
-                    stopShimmerEffect()
-                    response.data!!.let { foodRecipeAdapter.recipes.submitList(it.recipes.toList()) }
-                }
-
-                is NetworkResponse.Error -> {
-                    stopShimmerEffect()
-                    loadDataFromCache()
-                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet)) response.message?.let {
-                        showSnackBar(view, it)
-                    }
-                }
-
-                is NetworkResponse.Loading -> showShimmerEffect()
-            }
-        }
     }
 
     private fun setUpRecyclerView() = binding!!.recyclerView.apply {
@@ -76,11 +56,11 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
     private fun fetchDataFromDatabase() = lifecycleScope.launch {
         delay(750)
-        foodRecipesViewModel.readRecipes.observeOnce {
+        foodRecipesViewModel.readRecipes.observe(requireActivity()) {
             if (it.isNotEmpty() && !args.fromRecipeFilterFragment) {
                 foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
                 stopShimmerEffect()
-            } else fetchDataFromApi()
+            } else getRandomRecipesFromApi()
         }
     }
 
@@ -94,8 +74,47 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    private fun fetchDataFromApi() =
+    private fun getRandomRecipesFromApi() = apply {
         foodRecipesViewModel.getRandomRecipes(recipeViewModel.queries())
+        foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkResponse.Success -> stopShimmerEffect()
+
+                is NetworkResponse.Error -> {
+                    stopShimmerEffect()
+                    loadDataFromCache()
+                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet)) response.message?.let {
+                        showSnackBar(requireView(), it)
+                    }
+                }
+
+                is NetworkResponse.Loading -> showShimmerEffect()
+            }
+        }
+    }
+
+    private fun searchFoodRecipes(searchQuery: String) = apply {
+        foodRecipesViewModel.searchFoodRecipes(recipeViewModel.queries(searchQuery))
+        foodRecipesViewModel.searchRecipesResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkResponse.Success -> {
+                    stopShimmerEffect()
+                    response.data?.let { data -> foodRecipeAdapter.recipes.submitList(data.recipes) }
+                }
+
+                is NetworkResponse.Error -> {
+                    stopShimmerEffect()
+                    loadDataFromCache()
+                    if (response.message != requireActivity().getString(R.string.not_connected_to_internet)) response.message?.let {
+                        showSnackBar(requireView(), it)
+                    }
+                }
+
+                is NetworkResponse.Loading -> showShimmerEffect()
+            }
+
+        }
+    }
 
     private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 
@@ -125,7 +144,13 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
 //        searchView.isSubmitButtonEnabled = true
         val queryOnTextLister = object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean = true
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    searchFoodRecipes(query)
+                    return true
+                }
+                return false
+            }
 
             override fun onQueryTextChange(newText: String?): Boolean = true
 

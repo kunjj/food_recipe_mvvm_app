@@ -1,10 +1,8 @@
 package com.example.foodrecipesapplication.viewmodels
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.utils.DataStoreHelper
 import kotlinx.coroutines.Dispatchers
@@ -32,9 +30,10 @@ class RecipeViewModel(
             dataStoreHelper.saveMealAndDietType(mealType, mealTypeId, dietType, dietTypeId)
         }
 
-    fun queries(): HashMap<String, String> {
+    fun queries(searchQuery: String = ""): HashMap<String, String> {
         val queries = HashMap<String, String>()
         queries[Constant.QUERY_API_KEY] = Constant.API_KEY
+        queries[Constant.QUERY_SEARCH] = searchQuery
         queries[Constant.QUERY_PAGE_NUMBER] = Constant.DEFAULT_PAGE_NUMBER
         queries[Constant.QUERY_MEAL_TYPE] = this.mealType
         queries[Constant.QUERY_DIET_TYPE] = this.dietType

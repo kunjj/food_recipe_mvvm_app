@@ -25,7 +25,6 @@ class FoodRecipesViewModel @Inject constructor(
     private val foodRecipesRepository: FoodRecipesRepository
 ) : ViewModel() {
     private val networkListener: NetworkListener = NetworkListener()
-    var foodRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
 
     val readRecipes: LiveData<List<FoodRecipeEntity>> =
         foodRecipesRepository.readDatabase().asLiveData()
@@ -35,19 +34,41 @@ class FoodRecipesViewModel @Inject constructor(
             foodRecipesRepository.insertFoodRecipes(foodRecipeEntity)
         }
 
+    var foodRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
+
+    var searchRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
+
     fun getRandomRecipes(queries: Map<String, String>) = viewModelScope.launch {
-        getSafeApiCall(queries)
+        getSafeRandomRecipesApiCall(queries)
     }
 
-    private suspend fun getSafeApiCall(queries: Map<String, String>) {
+    fun searchFoodRecipes(searchQuery: Map<String,String>) = viewModelScope.launch {
+        getSafeSearchRecipesApiCall(searchQuery)
+    }
+
+    private suspend fun getSafeRandomRecipesApiCall(queries: Map<String, String>) {
         foodRecipesResponse.value = NetworkResponse.Loading()
-        networkListener.isConnectedToInternet(context).collect { status ->
-            if (status) {
+        networkListener.isConnectedToInternet(context).collect { isConnected ->
+            if (isConnected) {
                 val response = foodRecipesRepository.getRandomRecipes(queries)
                 foodRecipesResponse.value = handleResponse(response)
                 val foodRecipes = foodRecipesResponse.value!!.data
                 if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
             } else foodRecipesResponse.value = NetworkResponse.Error(
+                context.getString(
+                    R.string.not_connected_to_internet
+                )
+            )
+        }
+    }
+
+    private suspend fun getSafeSearchRecipesApiCall(queries: Map<String, String>) {
+        searchRecipesResponse.value = NetworkResponse.Loading()
+        networkListener.isConnectedToInternet(context).collect { isConnected ->
+            if (isConnected) {
+                val response = foodRecipesRepository.searchRecipes(queries)
+                searchRecipesResponse.value = handleResponse(response)
+            } else searchRecipesResponse.value = NetworkResponse.Error(
                 context.getString(
                     R.string.not_connected_to_internet
                 )
