@@ -2,8 +2,11 @@ package com.example.foodrecipesapplication.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -34,6 +37,8 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         this.binding = FragmentRecipeBinding.inflate(inflater)
         this.binding!!.recipesViewModel = this.foodRecipesViewModel
         this.binding!!.lifecycleOwner = this
+        setHasOptionsMenu(true)
+        (activity as MainActivity).setSupportActionBar(binding!!.toolbar)
         return binding!!.root
     }
 
@@ -110,6 +115,24 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
                 )
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.recipe_search, menu)
+
+        val searchItem = menu.findItem(R.id.search_recipes)
+        val searchView = searchItem.actionView as SearchView
+
+//        searchView.isSubmitButtonEnabled = true
+        val queryOnTextLister = object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean = true
+
+            override fun onQueryTextChange(newText: String?): Boolean = true
+
+        }
+
+        searchView.setOnQueryTextListener(queryOnTextLister)
+
     }
 
     override fun onDestroy() {
