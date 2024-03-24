@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.foodrecipesapplication.databinding.FragmentRecipesFilterBinding
-import com.example.foodrecipesapplication.ui.MainActivity
+import com.example.foodrecipesapplication.ui.RecipeActivity
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,7 +17,7 @@ import com.google.android.material.chip.ChipGroup
 
 class RecipesFilterFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentRecipesFilterBinding
-    private val recipeViewModel: RecipeViewModel by lazy { (activity as MainActivity).recipeViewModel }
+    private val recipeViewModel: RecipeViewModel by lazy { (activity as RecipeActivity).recipeViewModel }
     private var mealType = Constant.DEFAULT_MEAL_TYPE
     private var mealTypeId = 0
     private var dietType = Constant.DEFAULT_DIET_TYPE

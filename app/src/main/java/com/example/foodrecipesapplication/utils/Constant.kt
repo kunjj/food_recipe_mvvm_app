@@ -1,7 +1,7 @@
 package com.example.foodrecipesapplication.utils
 
 object Constant {
-    const val API_KEY = "58674c4257de455d96e42732051dbc9b"
+    const val API_KEY = "9fcf55dbef7a41859b3ecf56e7712abc"
     const val BASE_URL = "https://api.spoonacular.com"
 
     //Room Database.
@@ -13,6 +13,7 @@ object Constant {
     const val QUERY_PAGE_NUMBER = "number"
     const val QUERY_MEAL_TYPE = "type"
     const val QUERY_DIET_TYPE = "diet"
+    const val QUERY_CUISINE = "cuisine"
     const val QUERY_SEARCH = "query"
     const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
     const val FILL_INGREDIENTS = "fillIngredients"
