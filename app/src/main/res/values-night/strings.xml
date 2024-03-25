@@ -21,4 +21,5 @@
     <string name="paleo">Paleo</string>
     <string name="apply">Apply</string>
     <string name="search_recipes">Search Recipes</string>
+    <string name="details">Details</string>
 </resources>

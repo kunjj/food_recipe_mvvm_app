@@ -157,11 +157,9 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean = true
-
         }
 
         searchView.setOnQueryTextListener(queryOnTextLister)
-
     }
 
     override fun onDestroy() {

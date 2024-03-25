@@ -27,6 +27,7 @@
             app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                recipeOnClickListener="@{recipe}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
