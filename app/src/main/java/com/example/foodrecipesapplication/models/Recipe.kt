@@ -3,6 +3,7 @@ package com.example.foodrecipesapplication.models
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Recipe(
@@ -20,8 +21,8 @@ data class Recipe(
     val diets: List<String>,
     @SerializedName("dishTypes")
     val dishTypes: List<String>,
-//    @SerializedName("extendedIngredients")
-//    val extendedIngredients: List<ExtendedIngredient>,
+    @SerializedName("extendedIngredients")
+   val extendedIngredients: @RawValue List<ExtendedIngredient>,
     @SerializedName("gaps")
     val gaps: String,
     @SerializedName("glutenFree")
