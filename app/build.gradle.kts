@@ -89,5 +89,8 @@ dependencies {
 
     implementation(libs.jsoup)
 
+    //Bubble Tabbar Navigation Dependency.
     implementation(libs.bubbletabbar)
+
+    implementation(libs.androidx.viewpager2)
 }

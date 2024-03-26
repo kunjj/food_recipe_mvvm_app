@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.foodrecipesapplication.databinding.FragmentRecipesFilterBinding
-import com.example.foodrecipesapplication.ui.RecipeActivity
+import com.example.foodrecipesapplication.ui.activities.RecipeActivity
 import com.example.foodrecipesapplication.utils.Constant
 import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

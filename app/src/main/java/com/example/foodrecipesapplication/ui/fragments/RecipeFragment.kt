@@ -15,7 +15,7 @@ import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.adapters.FoodRecipeAdapter
 import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
-import com.example.foodrecipesapplication.ui.RecipeActivity
+import com.example.foodrecipesapplication.ui.activities.RecipeActivity
 import com.example.foodrecipesapplication.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -116,13 +116,13 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
                 is NetworkResponse.Loading -> showShimmerEffect()
             }
-
         }
     }
 
     private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 
     private fun stopShimmerEffect() = binding!!.recyclerView.hideShimmer()
+
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.btnFilterRecipe -> {

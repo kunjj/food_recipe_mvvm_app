@@ -17,12 +17,12 @@
         android:theme="@style/Theme.FoodRecipesApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ui.DetailsActivity"
+            android:name=".ui.activities.DetailsActivity"
             android:theme="@style/DetailsActivityStyle"
             android:label="@string/details"
             android:exported="false" />
         <activity
-            android:name=".ui.RecipeActivity"
+            android:name=".ui.activities.RecipeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

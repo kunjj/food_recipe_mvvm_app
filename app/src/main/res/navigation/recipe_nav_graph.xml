@@ -46,12 +46,12 @@
 
     <activity
         android:id="@+id/detailsActivity"
-        android:name="com.example.foodrecipesapplication.ui.DetailsActivity"
+        android:name="com.example.foodrecipesapplication.ui.activities.DetailsActivity"
         android:label="DetailsActivity"
         tools:layout="@layout/activity_details">
 
         <argument
-            android:name="recipes"
-            app:argType="com.example.foodrecipesapplication.models.Recipe"/>
+            android:name="recipe"
+            app:argType="com.example.foodrecipesapplication.models.Recipe" />
     </activity>
 </navigation>

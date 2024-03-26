@@ -1,4 +1,4 @@
-package com.example.foodrecipesapplication.ui
+package com.example.foodrecipesapplication.ui.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
