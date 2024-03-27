@@ -14,6 +14,7 @@ import com.example.foodrecipesapplication.ui.fragments.OverviewFragment
 class DetailsActivity : AppCompatActivity() {
     private var binding: ActivityDetailsBinding? = null
     private val args by navArgs<DetailsActivityArgs>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -38,10 +39,10 @@ class DetailsActivity : AppCompatActivity() {
         )
 
         val bundle = Bundle().also {
-            it.putParcelable("recipe",args.recipe)
+            it.putParcelable("recipe", args.recipe)
         }
 
-        return RecipeDetailsViewPagerAdapter(bundle,fragments,title,supportFragmentManager)
+        return RecipeDetailsViewPagerAdapter(bundle, fragments, title, supportFragmentManager)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
