@@ -3,9 +3,6 @@
     <string name="recipes">Recipes</string>
     <string name="favorite">Favorite</string>
     <string name="joke">Joke</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="not_connected_to_internet">Not Connected To Internet.</string>
     <string name="connection_timeout">Connection Timeout, Please Try After Sometimes.</string>
     <string name="try_after_sometimes">Try After Sometimes.</string>
