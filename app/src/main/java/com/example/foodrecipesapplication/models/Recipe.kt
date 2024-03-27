@@ -3,12 +3,13 @@ package com.example.foodrecipesapplication.models
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Recipe(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int,
+    @SerializedName("analyzedInstructions")
+    val analyzedInstructions: List<AnalyzedInstruction>,
     @SerializedName("cheap")
     val cheap: Boolean,
     @SerializedName("cookingMinutes")
@@ -22,7 +23,7 @@ data class Recipe(
     @SerializedName("dishTypes")
     val dishTypes: List<String>,
     @SerializedName("extendedIngredients")
-   val extendedIngredients: @RawValue List<ExtendedIngredient>,
+    val extendedIngredients: List<ExtendedIngredient>,
     @SerializedName("gaps")
     val gaps: String,
     @SerializedName("glutenFree")
@@ -36,7 +37,7 @@ data class Recipe(
     @SerializedName("imageType")
     val imageType: String,
     @SerializedName("instructions")
-    val instructions: String,
+    val instructions: String?,
     @SerializedName("license")
     val license: String,
     @SerializedName("lowFodmap")

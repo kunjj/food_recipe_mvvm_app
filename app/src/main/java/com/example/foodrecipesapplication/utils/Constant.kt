@@ -16,6 +16,7 @@ object Constant {
     const val QUERY_CUISINE = "cuisine"
     const val QUERY_SEARCH = "query"
     const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
+    const val QUERY_ADD_RECIPE_INSTRUCTION = "addRecipeInstructions"
     const val FILL_INGREDIENTS = "fillIngredients"
     const val QUERY_INSTRUCTION_REQUIRED = "instructionsRequired"
 

@@ -41,6 +41,7 @@ class RecipeViewModel(
         queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
         queries[Constant.FILL_INGREDIENTS] = "true"
         queries[Constant.QUERY_INSTRUCTION_REQUIRED] = "true"
+        queries[Constant.QUERY_ADD_RECIPE_INSTRUCTION] = "true"
         return queries
     }
 }

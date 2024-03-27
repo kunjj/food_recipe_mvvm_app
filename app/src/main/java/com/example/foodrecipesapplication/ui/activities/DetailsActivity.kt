@@ -13,6 +13,7 @@ import com.example.foodrecipesapplication.ui.fragments.OverviewFragment
 
 class DetailsActivity : AppCompatActivity() {
     private var binding: ActivityDetailsBinding? = null
+    private val args by navArgs<DetailsActivityArgs>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -36,7 +37,6 @@ class DetailsActivity : AppCompatActivity() {
             getString(R.string.instruction)
         )
 
-        val args by navArgs<DetailsActivityArgs>()
         val bundle = Bundle().also {
             it.putParcelable("recipe",args.recipe)
         }
