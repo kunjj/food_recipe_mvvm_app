@@ -56,7 +56,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Live Data Dependency.
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    //Data Store Dependency.
     implementation(libs.androidx.datastore.preferences)
 
     //Dagger-Hilt.
