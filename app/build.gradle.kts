@@ -56,7 +56,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Live Data Dependency.
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    //Data Store Dependency.
     implementation(libs.androidx.datastore.preferences)
 
     //Dagger-Hilt.
@@ -89,5 +93,8 @@ dependencies {
 
     implementation(libs.jsoup)
 
+    //Bubble Tabbar Navigation Dependency.
     implementation(libs.bubbletabbar)
+
+    implementation(libs.androidx.viewpager2)
 }

@@ -15,7 +15,8 @@ import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.adapters.FoodRecipeAdapter
 import com.example.foodrecipesapplication.databinding.FragmentRecipeBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
-import com.example.foodrecipesapplication.ui.MainActivity
+import com.example.foodrecipesapplication.ui.activities.RecipeActivity
+import com.example.foodrecipesapplication.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,8 +25,8 @@ import kotlinx.coroutines.launch
 class RecipeFragment : BaseFragment(), View.OnClickListener {
     private val args by navArgs<RecipeFragmentArgs>()
     private var binding: FragmentRecipeBinding? = null
-    private val foodRecipesViewModel by lazy { (activity as MainActivity).foodRecipesViewModel }
-    private val recipeViewModel by lazy { (activity as MainActivity).recipeViewModel }
+    private val foodRecipesViewModel by lazy { (activity as RecipeActivity).foodRecipesViewModel }
+    private val recipeViewModel by lazy { (activity as RecipeActivity).recipeViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
 
     override fun onCreateView(
@@ -36,7 +37,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         this.binding!!.recipesViewModel = this.foodRecipesViewModel
         this.binding!!.lifecycleOwner = this
         setHasOptionsMenu(true)
-        (activity as MainActivity).setSupportActionBar(binding!!.toolbar)
+        (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
         return binding!!.root
     }
 
@@ -56,7 +57,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
     private fun fetchDataFromDatabase() = lifecycleScope.launch {
         delay(750)
-        foodRecipesViewModel.readRecipes.observe(requireActivity()) {
+        foodRecipesViewModel.readRecipes.observeOnce {
             if (it.isNotEmpty() && !args.fromRecipeFilterFragment) {
                 foodRecipeAdapter.recipes.submitList(it[0].foodRecipe.recipes.toList())
                 stopShimmerEffect()
@@ -78,7 +79,10 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         foodRecipesViewModel.getRandomRecipes(recipeViewModel.queries())
         foodRecipesViewModel.foodRecipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
-                is NetworkResponse.Success -> stopShimmerEffect()
+                is NetworkResponse.Success -> {
+                    stopShimmerEffect()
+                    response.data!!.let { foodRecipeAdapter.recipes.submitList(it.recipes.toList()) }
+                }
 
                 is NetworkResponse.Error -> {
                     stopShimmerEffect()
@@ -112,13 +116,13 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
                 is NetworkResponse.Loading -> showShimmerEffect()
             }
-
         }
     }
 
     private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
 
     private fun stopShimmerEffect() = binding!!.recyclerView.hideShimmer()
+
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.btnFilterRecipe -> {
@@ -145,7 +149,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 //        searchView.isSubmitButtonEnabled = true
         val queryOnTextLister = object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query != null){
+                if (query != null) {
                     searchFoodRecipes(query)
                     return true
                 }
@@ -153,11 +157,9 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean = true
-
         }
 
         searchView.setOnQueryTextListener(queryOnTextLister)
-
     }
 
     override fun onDestroy() {
