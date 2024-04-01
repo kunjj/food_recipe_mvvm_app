@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="recipe"
+            type="com.example.foodrecipesapplication.models.Recipe" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,8 +26,10 @@
 
             <ImageView
                 android:id="@+id/ivRecipe"
+                loadImageFromUrl="@{recipe.image}"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -39,10 +44,11 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ivRecipe"
-                app:layout_constraintVertical_bias="0.94" />
+                app:layout_constraintVertical_bias="1" />
 
             <TextView
                 android:id="@+id/tvLikes"
+                numberOfLikes="@{recipe.aggregateLikes}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -67,6 +73,7 @@
 
             <TextView
                 android:id="@+id/tvTimeTaken"
+                timeToCook="@{recipe.readyInMinutes}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -103,14 +110,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvRecipeTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="@{recipe.title}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toTopOf="@id/rvRecipeDetails"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
@@ -122,6 +130,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRecipeTitle"
                 app:spanCount="3"
@@ -134,19 +143,20 @@
             android:id="@+id/clRecipeSummary"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clRecipeDetails"
             app:layout_constraintVertical_weight="0.45">
 
             <TextView
                 android:id="@+id/tvDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/description"
-                android:textSize="12dp"
+                android:textSize="14dp"
+                android:layout_marginHorizontal="10dp"
                 app:layout_constraintBottom_toTopOf="@id/svDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.025"
@@ -160,7 +170,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDescription">
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                <TextView
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ParseHtmlText="@{recipe.summary}" />
 
 
             </ScrollView>

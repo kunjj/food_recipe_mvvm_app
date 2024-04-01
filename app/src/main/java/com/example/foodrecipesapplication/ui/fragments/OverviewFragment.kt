@@ -12,24 +12,21 @@ import com.example.foodrecipesapplication.models.Recipe
 
 class OverviewFragment : Fragment() {
     private var binding: FragmentOverviewBinding? = null
-    private lateinit var recipeDetailsAdapter: RecipeDetailsAdapter
     private lateinit var recipe: Recipe
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         this.binding = FragmentOverviewBinding.inflate(inflater)
-
         this.recipe = requireArguments().getParcelable("recipe", Recipe::class.java)!!
-
+        this.binding!!.recipe = this.recipe
         return this.binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recipeDetailsAdapter = RecipeDetailsAdapter(requireContext(), recipe)
         binding!!.rvRecipeDetails.apply {
-            adapter = recipeDetailsAdapter
+            adapter = RecipeDetailsAdapter(requireContext(), recipe)
             layoutManager = GridLayoutManager(requireContext(), 3)
         }
     }

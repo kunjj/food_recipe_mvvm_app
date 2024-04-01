@@ -1,5 +1,6 @@
 package com.example.foodrecipesapplication.bindingadapters
 
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -35,8 +36,7 @@ class RecipeBindingAdapter {
         ) {
             if (apiResponse != null && apiResponse is NetworkResponse.Error && database.isNullOrEmpty()) linearLayout.visibility =
                 View.VISIBLE
-            else
-                linearLayout.visibility = View.INVISIBLE
+            else linearLayout.visibility = View.INVISIBLE
         }
 
         @BindingAdapter("loadImageFromUrl")
@@ -81,5 +81,10 @@ class RecipeBindingAdapter {
                 }
             }
         }
+
+        @BindingAdapter("ParseHtmlText")
+        @JvmStatic
+        fun parseHtmlText(textView: TextView, htmlText: String) =
+            apply { textView.text = Html.fromHtml(htmlText) }
     }
 }

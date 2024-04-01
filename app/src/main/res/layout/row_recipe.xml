@@ -71,7 +71,7 @@
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:paddingEnd="30dp"
-                    android:text="@{recipe.summary}"
+                    ParseHtmlText="@{recipe.summary}"
                     android:textAlignment="viewStart"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@id/tvRecipeName"
