@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodrecipesapplication.databinding.RowRecipeBinding
+import com.example.foodrecipesapplication.databinding.RecipeRowBinding
 import com.example.foodrecipesapplication.models.Recipe
 
 class FoodRecipeAdapter : RecyclerView.Adapter<FoodRecipeAdapter.RecipeViewHolder>() {
-    class RecipeViewHolder(private val binding: RowRecipeBinding) :
+    class RecipeViewHolder(private val binding: RecipeRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: Recipe) {
             binding.recipe = recipe
@@ -19,7 +19,7 @@ class FoodRecipeAdapter : RecyclerView.Adapter<FoodRecipeAdapter.RecipeViewHolde
         companion object {
             fun from(parent: ViewGroup): RecipeViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = RowRecipeBinding.inflate(layoutInflater)
+                val binding = RecipeRowBinding.inflate(layoutInflater)
                 return RecipeViewHolder(binding)
             }
         }
