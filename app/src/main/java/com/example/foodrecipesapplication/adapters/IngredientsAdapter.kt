@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.foodrecipesapplication.databinding.IngredientRowBinding
 import com.example.foodrecipesapplication.models.ExtendedIngredient
+import com.example.foodrecipesapplication.utils.Constant
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
     class IngredientsViewHolder(val binding: IngredientRowBinding) :
@@ -15,6 +17,9 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
         fun bind(ingredient: ExtendedIngredient) {
             binding.ingredient = ingredient
+            binding.ivIngredientImage.load(Constant.BASE_IMAGE_URL+ingredient.image)
+            Log.d("vndvl",Constant.BASE_IMAGE_URL+ingredient.image)
+//            binding.tvIngredientName.text = ingredient.name
         }
 
         companion object {
