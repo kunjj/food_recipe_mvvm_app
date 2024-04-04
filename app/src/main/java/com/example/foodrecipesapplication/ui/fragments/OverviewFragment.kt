@@ -17,8 +17,8 @@ class OverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        this.binding = FragmentOverviewBinding.inflate(inflater)
-        this.recipe = requireArguments().getParcelable("recipe", Recipe::class.java)!!
+        this.binding = FragmentOverviewBinding.inflate(inflater, container, false)
+        this.recipe = arguments?.getParcelable("recipe")!!
         this.binding!!.recipe = this.recipe
         return this.binding!!.root
     }

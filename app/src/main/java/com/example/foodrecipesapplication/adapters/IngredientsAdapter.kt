@@ -18,7 +18,7 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
         fun bind(ingredient: ExtendedIngredient) {
             binding.ingredient = ingredient
             binding.ivIngredientImage.load(Constant.BASE_IMAGE_URL+ingredient.image)
-            Log.d("vndvl",Constant.BASE_IMAGE_URL+ingredient.image)
+            Log.d("vndvl",ingredient.toString())
 //            binding.tvIngredientName.text = ingredient.name
         }
 
