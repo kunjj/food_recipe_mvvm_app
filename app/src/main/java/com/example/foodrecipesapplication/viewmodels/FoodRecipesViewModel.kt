@@ -11,6 +11,7 @@ import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
+import com.example.foodrecipesapplication.room.entities.FavoriteRecipe
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -22,18 +23,37 @@ import javax.inject.Inject
 @HiltViewModel
 class FoodRecipesViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val foodRecipesRepository: FoodRecipesRepository
+    private val foodRecipesRepository: FoodRecipesRepository,
 ) : ViewModel() {
     private val networkListener: NetworkListener = NetworkListener()
 
+    //Room Data Base.
     val readRecipes: LiveData<List<FoodRecipeEntity>> =
         foodRecipesRepository.readDatabase().asLiveData()
+
+    val favoriteRecipes: LiveData<List<FavoriteRecipe>> =
+        foodRecipesRepository.readFavortieRecipes().asLiveData()
+
 
     private fun insertRecipesToRoomDatabase(foodRecipeEntity: FoodRecipeEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             foodRecipesRepository.insertFoodRecipes(foodRecipeEntity)
         }
 
+    fun saveFavoriteRecipe(favoriteRecipe: FavoriteRecipe) = viewModelScope.launch(Dispatchers.IO) {
+        foodRecipesRepository.insertFavoriteRecipes(favoriteRecipe)
+    }
+
+    fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe) =
+        viewModelScope.launch(Dispatchers.IO) {
+            foodRecipesRepository.deleteFavoriteRecipe(favoriteRecipe)
+        }
+
+    fun deleteAllFavoriteRecipe() = viewModelScope.launch {
+        foodRecipesRepository.deleteAllFavoriteRecipes()
+    }
+
+    // Remote Data Source.
     var foodRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
 
     var searchRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
@@ -42,7 +62,7 @@ class FoodRecipesViewModel @Inject constructor(
         getSafeRandomRecipesApiCall(queries)
     }
 
-    fun searchFoodRecipes(searchQuery: Map<String,String>) = viewModelScope.launch {
+    fun searchFoodRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
         getSafeSearchRecipesApiCall(searchQuery)
     }
 

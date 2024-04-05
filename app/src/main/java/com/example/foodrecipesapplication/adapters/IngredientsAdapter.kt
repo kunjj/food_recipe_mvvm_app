@@ -17,7 +17,6 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
         fun bind(ingredient: ExtendedIngredient) {
             binding.ingredient = ingredient
-
             if (!ingredient.image.isNullOrEmpty()) {
                 binding.ivIngredientImage.load(Constant.BASE_IMAGE_URL + ingredient.image) {
                     crossfade(500)

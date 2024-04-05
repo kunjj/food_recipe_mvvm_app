@@ -8,6 +8,7 @@ object Constant {
     //Room Database.
     const val DATABASE_NAME = "recipes_database"
     const val TABLE_NAME = "recipes_table"
+    const val FAVORITE_RECIPE_TABLE = "favorite_recipes"
 
     //API Queries Key.
     const val QUERY_API_KEY = "apiKey"
