@@ -32,7 +32,6 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment.
         this.binding = FragmentRecipeBinding.inflate(inflater)
         this.binding!!.recipesViewModel = this.foodRecipesViewModel
         this.binding!!.lifecycleOwner = this

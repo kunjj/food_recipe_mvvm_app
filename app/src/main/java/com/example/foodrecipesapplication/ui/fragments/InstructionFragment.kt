@@ -13,7 +13,6 @@ class InstructionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         this.binding = FragmentInstructionBinding.inflate(inflater)
         return this.binding.root
     }

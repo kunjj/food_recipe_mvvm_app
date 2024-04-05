@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ingredient"
+            type="com.example.foodrecipesapplication.models.ExtendedIngredient" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black_overlay"
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/ivIngredientImage"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvIngredientName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.35"
+                    tools:src="@drawable/baseline_restaurant_menu_24" />
+
+                <TextView
+                    android:id="@+id/tvIngredientName"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginVertical="7dp"
+                    android:fontFamily="@font/courgette"
+                    android:text="@{ingredient.name}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintWidth_percent="0.65"
+                    app:layout_constraintBottom_toTopOf="@id/tvIngredientQuantity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivIngredientImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/recipes" />
+
+                <TextView
+                    android:id="@+id/tvIngredientQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="@{ingredient.original}"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/tvIngredientName"
+                    app:layout_constraintStart_toStartOf="@id/tvIngredientName"
+                    app:layout_constraintTop_toBottomOf="@id/tvIngredientName"
+                    tools:text="@string/ingredients" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
