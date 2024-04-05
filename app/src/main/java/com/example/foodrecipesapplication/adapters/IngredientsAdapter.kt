@@ -1,12 +1,12 @@
 package com.example.foodrecipesapplication.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.IngredientRowBinding
 import com.example.foodrecipesapplication.models.ExtendedIngredient
 import com.example.foodrecipesapplication.utils.Constant
@@ -17,9 +17,13 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
         fun bind(ingredient: ExtendedIngredient) {
             binding.ingredient = ingredient
-            binding.ivIngredientImage.load(Constant.BASE_IMAGE_URL+ingredient.image)
-            Log.d("vndvl",ingredient.toString())
-//            binding.tvIngredientName.text = ingredient.name
+
+            if (!ingredient.image.isNullOrEmpty()) {
+                binding.ivIngredientImage.load(Constant.BASE_IMAGE_URL + ingredient.image) {
+                    crossfade(500)
+                    error(R.drawable.baseline_restaurant_menu_24)
+                }
+            }
         }
 
         companion object {
@@ -36,20 +40,17 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
     private val ingredientsDifferCallback = object : DiffUtil.ItemCallback<ExtendedIngredient>() {
         override fun areItemsTheSame(
-            oldItem: ExtendedIngredient, newItem: ExtendedIngredient
+            oldItem: ExtendedIngredient, newItem: ExtendedIngredient,
         ): Boolean = oldItem === newItem
 
         override fun areContentsTheSame(
-            oldItem: ExtendedIngredient, newItem: ExtendedIngredient
+            oldItem: ExtendedIngredient, newItem: ExtendedIngredient,
         ): Boolean = oldItem == newItem
     }
 
     var ingredients = AsyncListDiffer(this, ingredientsDifferCallback)
 
-    override fun getItemCount(): Int {
-        Log.d("vcsd","size: "+this.ingredients.currentList.size.toString())
-        return this.ingredients.currentList.size
-    }
+    override fun getItemCount(): Int = this.ingredients.currentList.size
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         holder.bind(this.ingredients.currentList[position])

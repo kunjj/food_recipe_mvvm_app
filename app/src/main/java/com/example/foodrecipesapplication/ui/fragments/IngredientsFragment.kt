@@ -19,8 +19,7 @@ class IngredientsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        this.binding = FragmentIngredientsBinding.inflate(inflater,container,false)
+        this.binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         return this.binding!!.root
     }
 

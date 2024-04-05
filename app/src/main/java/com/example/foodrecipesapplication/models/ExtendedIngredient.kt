@@ -15,7 +15,7 @@ data class ExtendedIngredient(
     @SerializedName("id")
     val id: Int,
     @SerializedName("image")
-    val image: String,
+    val image: String?,
     @SerializedName("measures")
     val measures: Measures,
     @SerializedName("meta")
@@ -23,7 +23,7 @@ data class ExtendedIngredient(
     @SerializedName("name")
     val name: String,
     @SerializedName("nameClean")
-    val nameClean: String,
+    val nameClean: String?,
     @SerializedName("original")
     val original: String,
     @SerializedName("originalName")
