@@ -32,7 +32,7 @@ class FoodRecipesViewModel @Inject constructor(
         foodRecipesRepository.readDatabase().asLiveData()
 
     val favoriteRecipes: LiveData<List<FavoriteRecipe>> =
-        foodRecipesRepository.readFavortieRecipes().asLiveData()
+        foodRecipesRepository.readFavoriteRecipes().asLiveData()
 
 
     private fun insertRecipesToRoomDatabase(foodRecipeEntity: FoodRecipeEntity) =

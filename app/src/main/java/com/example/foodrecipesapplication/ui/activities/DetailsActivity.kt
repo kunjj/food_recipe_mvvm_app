@@ -92,8 +92,7 @@ class DetailsActivity : AppCompatActivity() {
                 for (favoriteRecipe in favoriteRecipes) {
                     this.isRecipeSaved = true
                     if (favoriteRecipe.recipe.id == args.recipe.id) changeIcon(
-                        menuItem,
-                        this.isRecipeSaved
+                        menuItem, this.isRecipeSaved
                     )
                 }
             } catch (e: Exception) {
