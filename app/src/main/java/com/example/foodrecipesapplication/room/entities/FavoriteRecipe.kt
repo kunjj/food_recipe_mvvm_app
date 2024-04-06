@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = Constant.FAVORITE_RECIPE_TABLE)
 data class FavoriteRecipe(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val recipe: Recipe
 ) : Parcelable

@@ -36,7 +36,7 @@ class RecipeViewModel(
         queries[Constant.QUERY_SEARCH] = searchQuery
         queries[Constant.QUERY_PAGE_NUMBER] = Constant.DEFAULT_PAGE_NUMBER
         queries[Constant.QUERY_MEAL_TYPE] = this.mealType
-        queries[Constant.QUERY_CUISINE] = "indian"
+//        queries[Constant.QUERY_CUISINE] = "indian"
         queries[Constant.QUERY_DIET_TYPE] = this.dietType
         queries[Constant.QUERY_ADD_RECIPE_INFORMATION] = "true"
         queries[Constant.FILL_INGREDIENTS] = "true"
