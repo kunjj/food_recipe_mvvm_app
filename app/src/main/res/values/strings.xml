@@ -36,4 +36,6 @@
     <string name="overview">Overview</string>
     <string name="quantity">Quantity</string>
     <string name="solid">Solid</string>
+    <string name="savedRecipes">Save Reciepes</string>
+    <string name="recipe_saved">Recipe Saved</string>
 </resources>

@@ -24,7 +24,8 @@ object DatabaseModule {
                 context,
                 RecipeDatabase::class.java,
                 Constant.DATABASE_NAME
-            ).allowMainThreadQueries().build()
+            ).allowMainThreadQueries()
+                .fallbackToDestructiveMigration().build()
         }
 
     @Provides
