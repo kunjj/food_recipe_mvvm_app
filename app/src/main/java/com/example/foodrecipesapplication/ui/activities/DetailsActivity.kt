@@ -25,6 +25,7 @@ class DetailsActivity : AppCompatActivity() {
     private var binding: ActivityDetailsBinding? = null
     private val args by navArgs<DetailsActivityArgs>()
     private val foodRecipesViewModel: FoodRecipesViewModel by viewModels()
+    private var isRecipeSaved = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,25 +53,30 @@ class DetailsActivity : AppCompatActivity() {
         val bundle = Bundle().also {
             it.putParcelable("recipe", args.recipe)
         }
-
         return RecipeDetailsViewPagerAdapter(bundle, fragments, title, supportFragmentManager)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                // This is the Up button
                 finish()
                 true
             }
 
             R.id.bookmarkRecipe -> {
-                saveToFavorites(item)
+                if (this.isRecipeSaved) removeFromFavoriteRecipe(item)
+                else saveToFavorites(item)
                 true
             }
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun removeFromFavoriteRecipe(item: MenuItem) {
+        this.foodRecipesViewModel.deleteFavoriteRecipe(FavoriteRecipe(args.recipe.id, args.recipe))
+        this.isRecipeSaved = false
+        changeIcon(item, isRecipeSaved)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,21 +87,25 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkIfRecipeIsAlreadySavedOrNot(menuItem: MenuItem) {
-        this.foodRecipesViewModel.favoriteRecipes.observe(this){favoriteRecipes ->
-            try{
-                for(favoriteRecipe in favoriteRecipes){
-                    if(favoriteRecipe.recipe.id == args.recipe.id) changeIcon(menuItem,true)
+        this.foodRecipesViewModel.favoriteRecipes.observe(this) { favoriteRecipes ->
+            try {
+                for (favoriteRecipe in favoriteRecipes) {
+                    this.isRecipeSaved = true
+                    if (favoriteRecipe.recipe.id == args.recipe.id) changeIcon(
+                        menuItem,
+                        this.isRecipeSaved
+                    )
                 }
-            } catch (e : Exception){
-                Log.e("DetailsActivity",e.printStackTrace().toString())
+            } catch (e: Exception) {
+                Log.e("DetailsActivity", e.printStackTrace().toString())
             }
-
         }
     }
 
     private fun saveToFavorites(item: MenuItem) {
         this.foodRecipesViewModel.saveFavoriteRecipe(FavoriteRecipe(args.recipe.id, args.recipe))
-        changeIcon(item, true)
+        this.isRecipeSaved = true
+        changeIcon(item, this.isRecipeSaved)
         showSnackBar(binding!!.root, getString(R.string.recipe_saved))
     }
 
