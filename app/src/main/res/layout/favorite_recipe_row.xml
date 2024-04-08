@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="recipe"
+            type="com.example.foodrecipesapplication.models.Recipe" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +16,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="175dp"
             android:layout_margin="10dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +24,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/black_overlay"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivRecipeImage"
+                    loadImageFromUrl="@{recipe.image}"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvRecipeName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.40"
+                    tools:src="@drawable/baseline_restaurant_menu_24" />
+
+                <TextView
+                    android:id="@+id/tvRecipeName"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    style="@style/FavoriteRecipeTitleStyle"
+                    android:text="@{recipe.title}"
+                    app:layout_constraintBottom_toTopOf="@id/tvRecipeSummary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivRecipeImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.60" />
+
+                <TextView
+                    android:id="@+id/tvRecipeSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:paddingHorizontal="10dp"
+                    android:text="@{recipe.summary}"
+                    android:textAlignment="viewStart"
+                    android:paddingVertical="5dp"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivRecipeImage"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipeName"
+                    app:layout_constraintWidth_percent="0.60"
+                    tools:text="@string/dummy_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

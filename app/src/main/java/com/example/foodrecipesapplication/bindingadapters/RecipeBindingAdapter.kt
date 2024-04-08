@@ -1,6 +1,7 @@
 package com.example.foodrecipesapplication.bindingadapters
 
 import android.text.Html
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -42,6 +43,7 @@ class RecipeBindingAdapter {
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, url: String) {
+            Log.d("cszvsd",url)
             if (!url.isNullOrEmpty()) {
                 imageView.load(url) {
                     crossfade(500)

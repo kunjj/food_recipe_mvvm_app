@@ -34,7 +34,6 @@ class FoodRecipesViewModel @Inject constructor(
     val favoriteRecipes: LiveData<List<FavoriteRecipe>> =
         foodRecipesRepository.readFavoriteRecipes().asLiveData()
 
-
     private fun insertRecipesToRoomDatabase(foodRecipeEntity: FoodRecipeEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             foodRecipesRepository.insertFoodRecipes(foodRecipeEntity)

@@ -77,6 +77,7 @@ class DetailsActivity : AppCompatActivity() {
         this.foodRecipesViewModel.deleteFavoriteRecipe(FavoriteRecipe(args.recipe.id, args.recipe))
         this.isRecipeSaved = false
         changeIcon(item, isRecipeSaved)
+        showSnackBar(binding!!.root, getString(R.string.recipe_removed))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -90,10 +91,12 @@ class DetailsActivity : AppCompatActivity() {
         this.foodRecipesViewModel.favoriteRecipes.observe(this) { favoriteRecipes ->
             try {
                 for (favoriteRecipe in favoriteRecipes) {
-                    this.isRecipeSaved = true
-                    if (favoriteRecipe.recipe.id == args.recipe.id) changeIcon(
-                        menuItem, this.isRecipeSaved
-                    )
+                    if (favoriteRecipe.recipe.id == args.recipe.id){
+                        this.isRecipeSaved = true
+                        changeIcon(
+                            menuItem, this.isRecipeSaved
+                        )
+                    }
                 }
             } catch (e: Exception) {
                 Log.e("DetailsActivity", e.printStackTrace().toString())

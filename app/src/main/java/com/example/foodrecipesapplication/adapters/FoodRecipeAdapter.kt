@@ -30,7 +30,7 @@ class FoodRecipeAdapter : RecyclerView.Adapter<FoodRecipeAdapter.RecipeViewHolde
             oldItem === newItem
 
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id
     }
 
     var recipes = AsyncListDiffer(this, recipesDifferCallback)
