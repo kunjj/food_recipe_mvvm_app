@@ -38,7 +38,6 @@ class FavoriteRecipeFragment : BaseFragment() {
         }
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         this.binding = null

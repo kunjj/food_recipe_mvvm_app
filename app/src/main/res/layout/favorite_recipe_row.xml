@@ -45,9 +45,10 @@
 
                 <TextView
                     android:id="@+id/tvRecipeName"
+                    style="@style/FavoriteRecipeTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    style="@style/FavoriteRecipeTitleStyle"
+                    android:gravity="center_vertical"
                     android:text="@{recipe.title}"
                     app:layout_constraintBottom_toTopOf="@id/tvRecipeSummary"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -57,21 +58,100 @@
 
                 <TextView
                     android:id="@+id/tvRecipeSummary"
+                    style="@style/FavoriteRecipeSummaryStyle"
+                    ParseHtmlText="@{recipe.summary}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:paddingHorizontal="10dp"
-                    android:text="@{recipe.summary}"
-                    android:textAlignment="viewStart"
-                    android:paddingVertical="5dp"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toTopOf="@id/ivLikes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivRecipeImage"
                     app:layout_constraintTop_toBottomOf="@id/tvRecipeName"
                     app:layout_constraintWidth_percent="0.60"
                     tools:text="@string/dummy_text" />
+
+                <ImageView
+                    android:id="@+id/ivLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like"
+                    app:layout_constraintBottom_toTopOf="@id/tvLikes"
+                    app:layout_constraintEnd_toEndOf="@id/tvLikes"
+                    app:layout_constraintStart_toStartOf="@id/tvLikes"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipeSummary"
+                    app:tint="@color/red" />
+
+                <TextView
+                    android:id="@+id/tvLikes"
+                    numberOfLikes="@{recipe.aggregateLikes}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvTimeTaken"
+                    app:layout_constraintStart_toStartOf="@id/tvRecipeSummary"
+                    app:layout_constraintTop_toBottomOf="@id/ivLikes"
+                    app:layout_constraintWidth_percent="0.20"
+                    tools:text="100" />
+
+                <ImageView
+                    android:id="@+id/ivTimeTaken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_time"
+                    app:layout_constraintBottom_toTopOf="@id/tvTimeTaken"
+                    app:layout_constraintEnd_toEndOf="@id/tvTimeTaken"
+                    app:layout_constraintStart_toStartOf="@id/tvTimeTaken"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipeSummary"
+                    app:tint="@color/orange" />
+
+                <TextView
+                    android:id="@+id/tvTimeTaken"
+                    timeToCook="@{recipe.readyInMinutes}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/orange"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvVegan"
+                    app:layout_constraintStart_toEndOf="@id/tvLikes"
+                    app:layout_constraintTop_toTopOf="@id/tvLikes"
+                    app:layout_constraintWidth_percent="0.20"
+                    tools:text="100" />
+
+                <ImageView
+                    android:id="@+id/ivVegan"
+                    isVegan="@{recipe.vegan}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vegan"
+                    app:layout_constraintBottom_toTopOf="@id/tvVegan"
+                    app:layout_constraintEnd_toEndOf="@id/tvVegan"
+                    app:layout_constraintStart_toStartOf="@id/tvVegan"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipeSummary" />
+
+                <TextView
+                    android:id="@+id/tvVegan"
+                    isVegan="@{recipe.vegan}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/vegan"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvRecipeSummary"
+                    app:layout_constraintTop_toTopOf="@id/tvLikes"
+                    app:layout_constraintWidth_percent="0.20" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
