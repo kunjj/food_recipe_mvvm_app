@@ -23,7 +23,7 @@ class FoodRecipesRepository @Inject constructor(
 
     fun readDatabase(): Flow<List<FoodRecipeEntity>> = this.recipesDao.readRecipes()
 
-    fun readFavortieRecipes(): Flow<List<FavoriteRecipe>> = this.recipesDao.readFavoriteRecipes()
+    fun readFavoriteRecipes(): Flow<List<FavoriteRecipe>> = this.recipesDao.readFavoriteRecipes()
 
     suspend fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe) =
         this.recipesDao.deleteFavoriteRecipe(favoriteRecipe)

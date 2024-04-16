@@ -25,15 +25,15 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                app:title="@string/details"
-                android:layout_height="?attr/actionBarSize" >
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/details">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/courgette"
-                    android:textColor="@color/white"
                     android:text="@string/details"
+                    android:textColor="@color/white"
                     android:textSize="35sp" />
 
             </androidx.appcompat.widget.Toolbar>
