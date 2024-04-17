@@ -10,6 +10,7 @@
     <string name="connection_timeout">Connection Timeout, Please Try After Sometimes.</string>
     <string name="try_after_sometimes">Try After Sometimes.</string>
     <string name="no_recipes_found">No Recipes Found.</string>
+    <string name="no_favorite_recipes_found">No Favorite Recipes Found.</string>
     <string name="meal_type">Meal Type</string>
     <string name="diet_type">Diet Type</string>
     <string name="main_course">Main Course</string>

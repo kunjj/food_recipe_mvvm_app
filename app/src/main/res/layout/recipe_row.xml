@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
+
             android:layout_width="match_parent"
             android:layout_height="175dp"
             android:layout_margin="10dp"
@@ -27,6 +28,7 @@
             app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                recipeOnClickListener="@{recipe}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -59,10 +61,10 @@
                 <TextView
                     android:id="@+id/tvRecipeSummary"
                     style="@style/FavoriteRecipeSummaryStyle"
+                    ParseHtmlText="@{recipe.summary}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
-                    ParseHtmlText="@{recipe.summary}"
                     app:layout_constraintBottom_toTopOf="@id/ivLikes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivRecipeImage"

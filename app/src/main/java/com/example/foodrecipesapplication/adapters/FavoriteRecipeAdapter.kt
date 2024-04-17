@@ -38,5 +38,6 @@ class FavoriteRecipeAdapter : RecyclerView.Adapter<FavoriteRecipeAdapter.RecipeV
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.binding.recipe = favoriteRecipes.currentList[position].recipe
+        holder.binding.executePendingBindings()
     }
 }

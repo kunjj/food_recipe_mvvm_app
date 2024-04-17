@@ -45,7 +45,6 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         setUpRecyclerView()
         fetchDataFromDatabase()
         binding!!.btnFilterRecipe.setOnClickListener(this)
-
     }
 
     private fun setUpRecyclerView() = binding!!.recyclerView.apply {

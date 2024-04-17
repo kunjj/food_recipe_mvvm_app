@@ -20,6 +20,8 @@ class FavoriteRecipeFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentFavoriteRecipeBinding.inflate(inflater)
+        this.binding!!.lifecycleOwner = this
+        this.binding!!.foodRecipeViewModel = this.foodRecipesViewModel
         return this.binding!!.root
     }
 
