@@ -3,9 +3,13 @@ package com.example.foodrecipesapplication.bindingadapters
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodrecipesapplication.models.Recipe
 import com.example.foodrecipesapplication.room.entities.FavoriteRecipe
+import com.example.foodrecipesapplication.ui.fragments.FavoriteRecipeFragmentDirections
 
 class FavoriteRecipesBindingAdapter {
     companion object {
@@ -30,6 +34,18 @@ class FavoriteRecipesBindingAdapter {
                         is RecyclerView -> view.visibility = View.VISIBLE
                     }
                 }
+            }
+        }
+
+        @BindingAdapter("favoriteRecipeOnClickListener")
+        @JvmStatic
+        fun favoriteRecipeOnClickListener(constraintLayout: ConstraintLayout, recipe: Recipe) {
+            constraintLayout.setOnClickListener {
+                val action =
+                    FavoriteRecipeFragmentDirections.actionFavoriteRecipeFragmentToDetailsActivity(
+                        recipe
+                    )
+                constraintLayout.findNavController().navigate(action)
             }
         }
     }
