@@ -5,12 +5,16 @@
 
     <data>
 
+        <variable
+            name="foodRecipeViewModel"
+            type="com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.FavoriteRecipeFragment">
+        tools:context=".ui.fragments.FavoriteRecipeFragment"
+        android:background="@color/gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoriteRecipes"
@@ -18,9 +22,40 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/favorite_recipe_row" />
+
+        <ImageView
+            android:id="@+id/ivNoFavoriteRecipesFound"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:alpha="0.5"
+            android:src="@drawable/ic_recipe"
+            android:visibility="gone"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
+
+        <TextView
+            android:id="@+id/tvNoFavoriteRecipesFound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:maxLines="2"
+            android:text="@string/no_favorite_recipes_found"
+            android:textSize="28sp"
+            android:visibility="gone"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.57" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

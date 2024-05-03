@@ -14,12 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class FavoriteRecipeFragment : BaseFragment() {
     private var binding: FragmentFavoriteRecipeBinding? = null
     private val foodRecipesViewModel by lazy { (activity as RecipeActivity).foodRecipesViewModel }
-    private val favoriteRecipeAdapter by lazy { FavoriteRecipeAdapter() }
+    private val favoriteRecipeAdapter by lazy { FavoriteRecipeAdapter(requireActivity(),foodRecipesViewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentFavoriteRecipeBinding.inflate(inflater)
+        this.binding!!.lifecycleOwner = this
+        this.binding!!.foodRecipeViewModel = this.foodRecipesViewModel
         return this.binding!!.root
     }
 
@@ -38,8 +40,9 @@ class FavoriteRecipeFragment : BaseFragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         this.binding = null
+        this.favoriteRecipeAdapter.clearSelection()
     }
 }
