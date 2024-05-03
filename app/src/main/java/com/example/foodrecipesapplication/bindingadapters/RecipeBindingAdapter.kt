@@ -33,7 +33,7 @@ class RecipeBindingAdapter {
         fun notConnectedToInternetError(
             linearLayout: LinearLayout,
             apiResponse: NetworkResponse<FoodRecipe>?,
-            database: List<FoodRecipeEntity>?
+            database: List<FoodRecipeEntity>?,
         ) {
             if (apiResponse != null && apiResponse is NetworkResponse.Error && database.isNullOrEmpty()) linearLayout.visibility =
                 View.VISIBLE
@@ -43,7 +43,7 @@ class RecipeBindingAdapter {
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, url: String) {
-            Log.d("cszvsd",url)
+            Log.d("cszvsd", url)
             if (!url.isNullOrEmpty()) {
                 imageView.load(url) {
                     crossfade(500)
