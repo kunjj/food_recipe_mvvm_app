@@ -85,7 +85,7 @@ class FavoriteRecipeAdapter(
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-        mode?.menuInflater?.inflate(R.menu.favorite_recipe_menu, menu)
+        mode?.menuInflater?.inflate(R.menu.favorite_recipe_contextual_action_menu, menu)
         actionMode = mode!!
         return true
     }
