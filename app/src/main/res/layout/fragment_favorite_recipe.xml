@@ -23,7 +23,6 @@
             android:background="@color/white_film"
             android:elevation="10dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:layout_constraintBottom_toTopOf="@id/rvFavoriteRecipes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

@@ -4,6 +4,7 @@
     <string name="favorite">Favorites</string>
     <string name="favorite_recipes">Favorites Recipes</string>
     <string name="joke">Joke</string>
+    <string name="food_joke">Food Joke</string>
     <string name="ingredients">Ingredients</string>
     <string name="instruction">Instruction</string>
     <string name="description">Description</string>
