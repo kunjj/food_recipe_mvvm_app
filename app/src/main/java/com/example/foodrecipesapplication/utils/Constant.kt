@@ -9,6 +9,7 @@ object Constant {
     const val DATABASE_NAME = "recipes_database"
     const val TABLE_NAME = "recipes_table"
     const val FAVORITE_RECIPE_TABLE = "favorite_recipes"
+    const val FOOD_JOKE_TABLE = "food_joke"
 
     //API Queries Key.
     const val QUERY_API_KEY = "apiKey"

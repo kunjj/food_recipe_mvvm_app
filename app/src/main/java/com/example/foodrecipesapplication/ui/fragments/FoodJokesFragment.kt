@@ -36,18 +36,25 @@ class FoodJokesFragment : BaseFragment() {
 
                 is NetworkResponse.Error -> {
                     hideProgressbar()
+                    loadDataFromCache()
                     showSnackBar(requireView(), it.message.toString())
                 }
             }
         }
     }
 
-    fun showProgressbar() {
+    private fun loadDataFromCache() {
+        this.foodRecipeViewModel.readRandomJoke.observe(viewLifecycleOwner) {
+            it.foodJoke.text.let { data -> this.binding!!.tvFoodJoke.text = data }
+        }
+    }
+
+    private fun showProgressbar() {
         this.binding!!.progressBar.visibility = View.VISIBLE
         this.binding!!.tvFoodJoke.visibility = View.GONE
     }
 
-    fun hideProgressbar() {
+    private fun hideProgressbar() {
         this.binding!!.progressBar.visibility = View.GONE
         this.binding!!.tvFoodJoke.visibility = View.VISIBLE
     }

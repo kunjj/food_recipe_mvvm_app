@@ -13,6 +13,7 @@ import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.network.NetworkResponse
 import com.example.foodrecipesapplication.repositories.FoodRecipesRepository
 import com.example.foodrecipesapplication.room.entities.FavoriteRecipe
+import com.example.foodrecipesapplication.room.entities.FoodJokeEntity
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -35,6 +36,8 @@ class FoodRecipesViewModel @Inject constructor(
     val favoriteRecipes: LiveData<List<FavoriteRecipe>> =
         foodRecipesRepository.readFavoriteRecipes().asLiveData()
 
+    val readRandomJoke: LiveData<FoodJokeEntity> = foodRecipesRepository.readFoodJoke().asLiveData()
+
     private fun insertRecipesToRoomDatabase(foodRecipeEntity: FoodRecipeEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             foodRecipesRepository.insertFoodRecipes(foodRecipeEntity)
@@ -43,6 +46,11 @@ class FoodRecipesViewModel @Inject constructor(
     fun saveFavoriteRecipe(favoriteRecipe: FavoriteRecipe) = viewModelScope.launch(Dispatchers.IO) {
         foodRecipesRepository.insertFavoriteRecipes(favoriteRecipe)
     }
+
+    private fun saveRandomJoke(foodJokeEntity: FoodJokeEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            foodRecipesRepository.saveFoodJoke(foodJokeEntity)
+        }
 
     fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -79,6 +87,8 @@ class FoodRecipesViewModel @Inject constructor(
                 val response = foodRecipesRepository.getRandomFoodJoke(apiKey)
                 if (response.isSuccessful) {
                     randomFoodJoke.value = NetworkResponse.Success(response.body()!!)
+                    randomFoodJoke.value!!.data?.let { FoodJokeEntity(foodJoke = it) }
+                        ?.let { saveRandomJoke(it) }
                 } else {
                     randomFoodJoke.value = NetworkResponse.Error(response.message())
                 }
@@ -94,7 +104,7 @@ class FoodRecipesViewModel @Inject constructor(
                 val response = foodRecipesRepository.getRandomRecipes(queries)
                 foodRecipesResponse.value = handleResponse(response)
                 val foodRecipes = foodRecipesResponse.value!!.data
-                if (foodRecipes != null) offlineCacheRecipes(foodRecipes)
+                if (foodRecipes != null) insertRecipesToRoomDatabase(FoodRecipeEntity(foodRecipe = foodRecipes))
             } else foodRecipesResponse.value = NetworkResponse.Error(
                 context.getString(
                     R.string.not_connected_to_internet
@@ -116,9 +126,6 @@ class FoodRecipesViewModel @Inject constructor(
             )
         }
     }
-
-    private fun offlineCacheRecipes(foodRecipes: FoodRecipe) =
-        insertRecipesToRoomDatabase(FoodRecipeEntity(foodRecipe = foodRecipes))
 
     private fun handleResponse(response: Response<FoodRecipe>): NetworkResponse<FoodRecipe> {
         return when {
