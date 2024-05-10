@@ -1,5 +1,6 @@
 package com.example.foodrecipesapplication.repositories
 
+import com.example.foodrecipesapplication.models.FoodJoke
 import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.FoodRecipeAPI
 import com.example.foodrecipesapplication.room.dao.RecipesDao
@@ -36,4 +37,6 @@ class FoodRecipesRepository @Inject constructor(
 
     suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> =
         foodRecipeAPI.getSearchedFoodRecipes(searchQuery)
+
+    suspend fun getRandomFoodJoke(apiKey: String): Response<FoodJoke> = foodRecipeAPI.getRandomFoodJoke(apiKey)
 }

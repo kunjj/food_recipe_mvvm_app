@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodrecipesapplication.R
+import com.example.foodrecipesapplication.models.FoodJoke
 import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.NetworkListener
 import com.example.foodrecipesapplication.network.NetworkResponse
@@ -57,12 +58,33 @@ class FoodRecipesViewModel @Inject constructor(
 
     var searchRecipesResponse: MutableLiveData<NetworkResponse<FoodRecipe>> = MutableLiveData()
 
+    var randomFoodJoke: MutableLiveData<NetworkResponse<FoodJoke>> = MutableLiveData()
+
     fun getRandomRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getSafeRandomRecipesApiCall(queries)
     }
 
     fun searchFoodRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
         getSafeSearchRecipesApiCall(searchQuery)
+    }
+
+    fun getFoodJoke(apiKey: String) = viewModelScope.launch {
+        getSafeFoodJokeApiCall(apiKey)
+    }
+
+    private suspend fun getSafeFoodJokeApiCall(apiKey: String) {
+        randomFoodJoke.value = NetworkResponse.Loading()
+        networkListener.isConnectedToInternet(context).collect { isConnected ->
+            if (isConnected) {
+                val response = foodRecipesRepository.getRandomFoodJoke(apiKey)
+                if (response.isSuccessful) {
+                    randomFoodJoke.value = NetworkResponse.Success(response.body()!!)
+                } else {
+                    randomFoodJoke.value = NetworkResponse.Error(response.message())
+                }
+            } else randomFoodJoke.value =
+                NetworkResponse.Error(context.getString(R.string.not_connected_to_internet))
+        }
     }
 
     private suspend fun getSafeRandomRecipesApiCall(queries: Map<String, String>) {

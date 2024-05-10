@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.foodrecipesapplication.databinding.FragmentFoodJokesBinding
+import com.example.foodrecipesapplication.network.NetworkResponse
+import com.example.foodrecipesapplication.ui.activities.RecipeActivity
+import com.example.foodrecipesapplication.utils.Constant
 
-class FoodJokesFragment : Fragment() {
+class FoodJokesFragment : BaseFragment() {
     private var binding: FragmentFoodJokesBinding? = null
+    private val foodRecipeViewModel by lazy { (activity as RecipeActivity).foodRecipesViewModel }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -16,5 +19,36 @@ class FoodJokesFragment : Fragment() {
     ): View {
         this.binding = FragmentFoodJokesBinding.inflate(inflater, container, false)
         return this.binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.foodRecipeViewModel.getFoodJoke(Constant.API_KEY)
+
+        this.foodRecipeViewModel.randomFoodJoke.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResponse.Loading -> showProgressbar()
+
+                is NetworkResponse.Success -> {
+                    hideProgressbar()
+                    it.data?.let { data -> this.binding!!.tvFoodJoke.text = data.text }
+                }
+
+                is NetworkResponse.Error -> {
+                    hideProgressbar()
+                    showSnackBar(requireView(), it.message.toString())
+                }
+            }
+        }
+    }
+
+    fun showProgressbar() {
+        this.binding!!.progressBar.visibility = View.VISIBLE
+        this.binding!!.tvFoodJoke.visibility = View.GONE
+    }
+
+    fun hideProgressbar() {
+        this.binding!!.progressBar.visibility = View.GONE
+        this.binding!!.tvFoodJoke.visibility = View.VISIBLE
     }
 }
