@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="foodJoke"
+            type="com.example.foodrecipesapplication.models.FoodJoke" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +23,8 @@
             android:background="@color/green"
             android:elevation="10dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintBottom_toTopOf="@id/svFoodJoke"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -34,24 +39,27 @@
         </androidx.appcompat.widget.Toolbar>
 
         <ScrollView
+            android:id="@+id/svFoodJoke"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            android:layout_margin="5dp">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFoodJoke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/courgette"
                 android:layout_gravity="center"
+                android:fontFamily="@font/courgette"
                 android:justificationMode="inter_word"
                 android:letterSpacing="0.015"
-                android:padding="10dp"
                 android:scrollbars="vertical"
+                android:text="@{foodJoke.text}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 tools:text="@string/dummy_text" />

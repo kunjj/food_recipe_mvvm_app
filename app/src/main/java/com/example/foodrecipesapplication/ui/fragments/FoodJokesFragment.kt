@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.foodrecipesapplication.databinding.FragmentFoodJokesBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
-import com.example.foodrecipesapplication.ui.activities.RecipeActivity
 import com.example.foodrecipesapplication.utils.Constant
+import com.example.foodrecipesapplication.viewmodels.FoodRecipesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodJokesFragment : BaseFragment() {
     private var binding: FragmentFoodJokesBinding? = null
-    private val foodRecipeViewModel by lazy { (activity as RecipeActivity).foodRecipesViewModel }
+    private val foodRecipeViewModel by viewModels<FoodRecipesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +34,12 @@ class FoodJokesFragment : BaseFragment() {
 
                 is NetworkResponse.Success -> {
                     hideProgressbar()
-                    it.data?.let { data -> this.binding!!.tvFoodJoke.text = data.text }
+                    it.data?.let { data -> this.binding!!.foodJoke = data }
                 }
 
                 is NetworkResponse.Error -> {
                     hideProgressbar()
                     loadDataFromCache()
-                    showSnackBar(requireView(), it.message.toString())
                 }
             }
         }
@@ -45,7 +47,7 @@ class FoodJokesFragment : BaseFragment() {
 
     private fun loadDataFromCache() {
         this.foodRecipeViewModel.readRandomJoke.observe(viewLifecycleOwner) {
-            it.foodJoke.text.let { data -> this.binding!!.tvFoodJoke.text = data }
+            it?.foodJoke?.let { this.binding!!.foodJoke = it }
         }
     }
 
