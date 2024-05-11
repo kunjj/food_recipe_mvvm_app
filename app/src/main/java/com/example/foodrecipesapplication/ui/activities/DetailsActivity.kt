@@ -1,5 +1,6 @@
 package com.example.foodrecipesapplication.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -26,6 +27,7 @@ class DetailsActivity : AppCompatActivity() {
     private val args by navArgs<DetailsActivityArgs>()
     private val foodRecipesViewModel: FoodRecipesViewModel by viewModels()
     private var isRecipeSaved = false
+    private var recipeUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding!!.root)
         setSupportActionBar(binding!!.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        this.recipeUrl = this.args.recipe.sourceUrl
     }
 
     override fun onStart() {
@@ -66,6 +69,16 @@ class DetailsActivity : AppCompatActivity() {
             R.id.bookmarkRecipe -> {
                 if (this.isRecipeSaved) removeFromFavoriteRecipe(item)
                 else saveToFavorites(item)
+                true
+            }
+
+            R.id.shareRecipe -> {
+                val shareIntent = Intent().apply{
+                    this.action = Intent.ACTION_SEND
+                    this.putExtra(Intent.EXTRA_TEXT,recipeUrl)
+                    this.type = "text/plain"
+                }
+                startActivity(Intent.createChooser(shareIntent,"Share Recipe Via"))
                 true
             }
 
