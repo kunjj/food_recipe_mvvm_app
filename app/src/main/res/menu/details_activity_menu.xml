@@ -10,4 +10,11 @@
         tools:targetApi="o"
         android:title="@string/savedRecipes" />
 
+    <item
+        android:id="@+id/shareRecipe"
+        android:icon="@drawable/ic_share"
+        app:showAsAction="always"
+        tools:targetApi="o"
+        android:title="@string/shareRecipe" />
+
 </menu>

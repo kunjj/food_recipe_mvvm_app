@@ -1,9 +1,11 @@
 package com.example.foodrecipesapplication.repositories
 
+import com.example.foodrecipesapplication.models.FoodJoke
 import com.example.foodrecipesapplication.models.FoodRecipe
 import com.example.foodrecipesapplication.network.FoodRecipeAPI
 import com.example.foodrecipesapplication.room.dao.RecipesDao
 import com.example.foodrecipesapplication.room.entities.FavoriteRecipe
+import com.example.foodrecipesapplication.room.entities.FoodJokeEntity
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
@@ -30,10 +32,18 @@ class FoodRecipesRepository @Inject constructor(
 
     suspend fun deleteAllFavoriteRecipes() = this.recipesDao.deleteAllFavoriteRecipe()
 
+    suspend fun saveFoodJoke(foodJokeEntity: FoodJokeEntity) =
+        this.recipesDao.saveFoodJoke(foodJokeEntity)
+
+    fun readFoodJoke(): Flow<FoodJokeEntity> = this.recipesDao.readFoodJoke()
+
     //Remote DataSource.
     suspend fun getRandomRecipes(queries: Map<String, String>): Response<FoodRecipe> =
         foodRecipeAPI.getRandomFoodRecipes(queries)
 
     suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> =
         foodRecipeAPI.getSearchedFoodRecipes(searchQuery)
+
+    suspend fun getRandomFoodJoke(apiKey: String): Response<FoodJoke> =
+        foodRecipeAPI.getRandomFoodJoke(apiKey)
 }

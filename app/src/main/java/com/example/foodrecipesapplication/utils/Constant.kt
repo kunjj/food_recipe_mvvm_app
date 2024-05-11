@@ -1,7 +1,10 @@
 package com.example.foodrecipesapplication.utils
 
+import android.view.View
+import com.google.android.material.snackbar.Snackbar
+
 object Constant {
-    const val API_KEY = "58674c4257de455d96e42732051dbc9b"
+    const val API_KEY = "9fcf55dbef7a41859b3ecf56e7712abc"
     const val BASE_IMAGE_URL = "https://img.spoonacular.com/ingredients_100x100/"
     const val BASE_URL = "https://api.spoonacular.com"
 
@@ -9,6 +12,7 @@ object Constant {
     const val DATABASE_NAME = "recipes_database"
     const val TABLE_NAME = "recipes_table"
     const val FAVORITE_RECIPE_TABLE = "favorite_recipes"
+    const val FOOD_JOKE_TABLE = "food_joke"
 
     //API Queries Key.
     const val QUERY_API_KEY = "apiKey"
@@ -33,4 +37,8 @@ object Constant {
     const val MEAL_TYPE_ID = "mealTypeId"
     const val DIET_TYPE = "dietType"
     const val DIET_TYPE_ID = "dietTypeId"
+
+    fun showSnackBar(view: View, message: String) = apply {
+        Snackbar.make(view,message, Snackbar.LENGTH_SHORT).show()
+    }
 }

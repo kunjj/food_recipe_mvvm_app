@@ -13,28 +13,47 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.FavoriteRecipeFragment"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        tools:context=".ui.fragments.FavoriteRecipeFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white_film"
+            android:elevation="10dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/courgette"
+                android:text="@string/favorite_recipes"
+                android:textSize="35sp" />
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoriteRecipes"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             tools:listitem="@layout/favorite_recipe_row" />
 
         <ImageView
             android:id="@+id/ivNoFavoriteRecipesFound"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
             android:src="@drawable/ic_recipe"
             android:visibility="gone"
-            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +62,7 @@
 
         <TextView
             android:id="@+id/tvNoFavoriteRecipesFound"
+            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
@@ -50,7 +70,6 @@
             android:text="@string/no_favorite_recipes_found"
             android:textSize="28sp"
             android:visibility="gone"
-            setDataVisibility="@{foodRecipeViewModel.favoriteRecipes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
