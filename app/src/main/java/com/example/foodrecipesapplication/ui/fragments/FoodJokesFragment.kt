@@ -94,4 +94,9 @@ class FoodJokesFragment : BaseFragment() {
         this.binding!!.progressBar.visibility = View.GONE
         this.binding!!.tvFoodJoke.visibility = View.VISIBLE
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.binding = null
+    }
 }

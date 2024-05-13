@@ -19,19 +19,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white_film"
             android:elevation="10dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            style="@style/AppTheme"
+            android:theme="@style/AppTheme"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/courgette"
-                android:text="@string/recipes"
-                android:textSize="35sp" />
 
         </androidx.appcompat.widget.Toolbar>
 

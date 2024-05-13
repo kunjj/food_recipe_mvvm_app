@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/green</color>
+    <color name="colorPrimary">@color/gray</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@color/green</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#EFECEC</color>
-    <color name="darkGray">#979696</color>
     <color name="green">#00BD7F</color>
     <color name="red">#E15757</color>
     <color name="white_film">#A3FFFBFB</color>
@@ -21,13 +20,13 @@
     <color name="uncheckedChipColor">#EFEAEA</color>
 
     //Search Icon Background.
-    <color name="searchIconColor">@color/black</color>
+    <color name="searchIconColor">@color/white</color>
 
     //Recipe TextColor.
-    <color name="recipeTextColor">@color/black</color>
+    <color name="recipeTextColor">@color/white</color>
 
     //Recipe Description TextColor.
-    <color name="recipeDescriptionTextColor">@color/black</color>
+    <color name="recipeDescriptionTextColor">@color/white</color>
 
     //No.s of likes color.
     <color name="likesColor">@color/red</color>
@@ -40,10 +39,10 @@
     <color name="notVeganColor">@color/darkGray</color>
 
     //Ingredients Title Color.
-    <color name="ingredientsTextColor">@color/black</color>
+    <color name="ingredientsTextColor">@color/white</color>
 
-    //Ingredients Row Stroke Color.
-    <color name="strokeColor">@color/black_overlay</color>
+    //Material Stroke Color.
+    <color name="strokeColor">@color/green</color>
 
     <color name="card_background_color">@color/white</color>
     <color name="title_color">@color/black</color>

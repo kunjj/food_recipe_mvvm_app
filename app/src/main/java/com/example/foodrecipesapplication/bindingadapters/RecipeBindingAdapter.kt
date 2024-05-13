@@ -70,13 +70,29 @@ class RecipeBindingAdapter {
                 when (view) {
                     is TextView -> view.setTextColor(
                         ContextCompat.getColor(
-                            view.context, R.color.green
+                            view.context, R.color.veganColor
                         )
                     )
 
                     is ImageView -> view.setColorFilter(
                         ContextCompat.getColor(
-                            view.context, R.color.green
+                            view.context, R.color.veganColor
+                        )
+                    )
+                }
+            }
+
+            else{
+                when (view) {
+                    is TextView -> view.setTextColor(
+                        ContextCompat.getColor(
+                            view.context, R.color.notVeganColor
+                        )
+                    )
+
+                    is ImageView -> view.setColorFilter(
+                        ContextCompat.getColor(
+                            view.context, R.color.notVeganColor
                         )
                     )
                 }

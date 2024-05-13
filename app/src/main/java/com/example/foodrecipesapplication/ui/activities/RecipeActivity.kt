@@ -30,7 +30,6 @@ class RecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.black_overlay, null)
         val recipeViewModelFactory = RecipeViewModelFactory(this, DataStoreHelper(this))
         this.recipeViewModel =
             ViewModelProvider(this, recipeViewModelFactory)[RecipeViewModel::class.java]

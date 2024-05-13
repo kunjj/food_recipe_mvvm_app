@@ -23,8 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/black_overlay"
-            app:strokeWidth="1dp">
+            app:strokeColor="@color/strokeColor"
+            app:strokeWidth="1.25dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 recipeOnClickListener="@{recipe}"
@@ -50,6 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
+                    android:textColor="@color/recipeTextColor"
                     android:text="@{recipe.title}"
                     app:layout_constraintBottom_toTopOf="@id/tvRecipeSummary"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +81,7 @@
                     app:layout_constraintEnd_toEndOf="@id/tvLikes"
                     app:layout_constraintStart_toStartOf="@id/tvLikes"
                     app:layout_constraintTop_toBottomOf="@id/tvRecipeSummary"
-                    app:tint="@color/red" />
+                    app:tint="@color/likesColor" />
 
                 <TextView
                     android:id="@+id/tvLikes"
@@ -91,7 +92,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/red"
+                    android:textColor="@color/likesColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tvTimeTaken"
                     app:layout_constraintStart_toStartOf="@id/tvRecipeSummary"
@@ -108,7 +109,7 @@
                     app:layout_constraintEnd_toEndOf="@id/tvTimeTaken"
                     app:layout_constraintStart_toStartOf="@id/tvTimeTaken"
                     app:layout_constraintTop_toBottomOf="@id/tvRecipeSummary"
-                    app:tint="@color/orange" />
+                    app:tint="@color/timeTakenColor" />
 
                 <TextView
                     android:id="@+id/tvTimeTaken"
@@ -119,7 +120,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/orange"
+                    android:textColor="@color/timeTakenColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tvVegan"
                     app:layout_constraintStart_toEndOf="@id/tvLikes"

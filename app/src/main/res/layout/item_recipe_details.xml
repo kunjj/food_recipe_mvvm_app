@@ -21,14 +21,14 @@
             app:layout_constraintHorizontal_bias="0.94"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_overlay" />
+            app:tint="@color/darkGray" />
 
         <TextView
             android:id="@+id/tvOption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
-            android:textColor="@color/black_overlay"
+            android:textColor="@color/darkGray"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivChecked"
