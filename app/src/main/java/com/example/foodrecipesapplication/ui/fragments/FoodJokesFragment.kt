@@ -30,6 +30,8 @@ class FoodJokesFragment : BaseFragment() {
         this.binding = FragmentFoodJokesBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
+        (activity as RecipeActivity).supportActionBar?.title =
+            context?.getString(R.string.food_joke)
         return this.binding!!.root
     }
 
@@ -93,5 +95,10 @@ class FoodJokesFragment : BaseFragment() {
     private fun hideProgressbar() {
         this.binding!!.progressBar.visibility = View.GONE
         this.binding!!.tvFoodJoke.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.binding = null
     }
 }

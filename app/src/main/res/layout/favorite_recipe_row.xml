@@ -24,7 +24,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="2dp">
+            app:strokeColor="@color/strokeColor"
+            app:strokeWidth="1.25dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clRecipe"

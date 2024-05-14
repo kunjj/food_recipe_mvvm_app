@@ -30,13 +30,14 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentRecipeBinding.inflate(inflater)
         this.binding!!.recipesViewModel = this.foodRecipesViewModel
         this.binding!!.lifecycleOwner = this
         setHasOptionsMenu(true)
         (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
+        (activity as RecipeActivity).supportActionBar?.title = context?.getString(R.string.recipes)
         return binding!!.root
     }
 
@@ -143,6 +144,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
         val searchItem = menu.findItem(R.id.search_recipes)
         val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = requireActivity().getString(R.string.search_recipes)
 
 //        searchView.isSubmitButtonEnabled = true
         val queryOnTextLister = object : SearchView.OnQueryTextListener {

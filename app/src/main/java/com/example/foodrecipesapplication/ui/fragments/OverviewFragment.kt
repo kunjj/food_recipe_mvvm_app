@@ -14,7 +14,7 @@ class OverviewFragment : Fragment() {
     private var binding: FragmentOverviewBinding? = null
     private lateinit var recipe: Recipe
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentOverviewBinding.inflate(inflater, container, false)
         this.recipe = arguments?.getParcelable("recipe")!!

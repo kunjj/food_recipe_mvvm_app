@@ -6,7 +6,6 @@
         android:id="@+id/search_recipes"
         android:icon="@drawable/ic_search"
         android:title="@string/search_recipes"
-        
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always|withText" />
 

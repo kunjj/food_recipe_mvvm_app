@@ -17,7 +17,7 @@ class IngredientsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         return this.binding!!.root
