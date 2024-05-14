@@ -32,6 +32,8 @@ class FavoriteRecipeFragment : BaseFragment() {
         this.binding!!.foodRecipeViewModel = this.foodRecipesViewModel
         setHasOptionsMenu(true)
         (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
+        (activity as RecipeActivity).supportActionBar?.title =
+            context?.getString(R.string.favorite_recipes)
         return this.binding!!.root
     }
 

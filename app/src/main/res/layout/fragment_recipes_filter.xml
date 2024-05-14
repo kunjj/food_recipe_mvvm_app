@@ -8,8 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvMealType"
@@ -18,7 +17,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/meal_type"
-            android:textColor="@color/black"
+            android:textColor="@color/recipeTextColor"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/diet_type"
-            android:textColor="@color/black"
+            android:textColor="@color/recipeTextColor"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/cgDietType"

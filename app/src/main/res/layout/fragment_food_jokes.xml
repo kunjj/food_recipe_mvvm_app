@@ -13,30 +13,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/food_joke_background_light"
         tools:context=".ui.fragments.FoodJokesFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/RecipesActivityStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/green"
             android:elevation="10dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:layout_constraintBottom_toTopOf="@id/svFoodJoke"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/courgette"
-                android:text="@string/food_joke"
-                android:textColor="@color/white"
-                android:textSize="35sp" />
-
-        </androidx.appcompat.widget.Toolbar>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:id="@+id/svFoodJoke"
@@ -44,6 +32,9 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/food_joke_background_light"
+            android:backgroundTint="@color/gray"
+            android:backgroundTintMode="multiply"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +51,7 @@
                 android:letterSpacing="0.015"
                 android:scrollbars="vertical"
                 android:text="@{foodJoke.text}"
-                android:textColor="@color/black"
+                android:textColor="@color/foodJokeTextColor"
                 android:textSize="18sp"
                 tools:text="@string/dummy_text" />
 

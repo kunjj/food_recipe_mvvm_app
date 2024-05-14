@@ -6,6 +6,8 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#EFECEC</color>
+    <color name="darkGray">#979696</color>
+    <color name="darkerGray">#424141</color>
     <color name="green">#00BD7F</color>
     <color name="red">#E15757</color>
     <color name="white_film">#A3FFFBFB</color>
@@ -14,10 +16,17 @@
     <color name="black_overlay">#66000000</color>
     <color name="orange">#FF9209</color>
 
+    //Status bar Background color.
+    <color name="statusBarColor">@color/darkerGray</color>
+
+    //Placeholder Recyclerview background.
+    <color name="placeholderColor">@color/darkGray</color>
+
     //Chip Background.
-    <color name="checkedChipColor">#C8E8DD</color>
-    <color name="checkedChipTextColor">@color/green</color>
-    <color name="uncheckedChipColor">#EFEAEA</color>
+    <color name="checkedChipColor">@color/green</color>
+    <color name="checkedChipTextColor">@color/white</color>
+    <color name="unCheckedChipTextColor">@color/darkGray</color>
+    <color name="uncheckedChipColor">@color/darkerGray</color>
 
     //Search Icon Background.
     <color name="searchIconColor">@color/white</color>
@@ -42,7 +51,13 @@
     <color name="ingredientsTextColor">@color/white</color>
 
     //Material Stroke Color.
-    <color name="strokeColor">@color/green</color>
+    <color name="strokeColor">@color/darkGray</color>
+
+    //Food Joke Text Color.
+    <color name="foodJokeTextColor">@color/white</color>
+
+    //Apply Button Background Color.
+    <color name="applyButtonColor">@color/darkerGray</color>
 
     <color name="card_background_color">@color/white</color>
     <color name="title_color">@color/black</color>
