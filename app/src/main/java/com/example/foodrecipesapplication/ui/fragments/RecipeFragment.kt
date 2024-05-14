@@ -144,6 +144,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
 
         val searchItem = menu.findItem(R.id.search_recipes)
         val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = requireActivity().getString(R.string.search_recipes)
 
 //        searchView.isSubmitButtonEnabled = true
         val queryOnTextLister = object : SearchView.OnQueryTextListener {

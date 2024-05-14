@@ -10,9 +10,11 @@
             type="com.example.foodrecipesapplication.models.Recipe" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_overview_xml_constraintlayout3_scene">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clRecipeImage"
@@ -182,5 +184,5 @@
                     android:textColor="@color/recipeDescriptionTextColor" />
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
