@@ -50,12 +50,12 @@
 
             <TextView
                 android:id="@+id/tvLikes"
-                numberOfLikes="@{recipe.aggregateLikes}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:gravity="bottom|end"
+                android:text="@{String.valueOf(recipe.aggregateLikes)}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -74,11 +74,11 @@
 
             <TextView
                 android:id="@+id/tvTimeTaken"
-                timeToCook="@{recipe.readyInMinutes}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:text="@{String.valueOf(recipe.readyInMinutes)}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
