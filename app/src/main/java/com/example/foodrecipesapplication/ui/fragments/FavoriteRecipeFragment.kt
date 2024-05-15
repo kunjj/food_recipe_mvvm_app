@@ -58,9 +58,15 @@ class FavoriteRecipeFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.delete_all_favorite_recipes -> {
-                foodRecipesViewModel.deleteAllFavoriteRecipe()
-                showSnackBar(requireView(), getString(R.string.all_recipes_removed))
-                true
+                if (favoriteRecipeAdapter.favoriteRecipes.currentList.isEmpty()) {
+                    showSnackBar(requireView(), getString(R.string.theres_no_favorite_recipes))
+                    false
+                } else {
+                    favoriteRecipeAdapter.favoriteRecipes.submitList(emptyList())
+                    foodRecipesViewModel.deleteAllFavoriteRecipe()
+                    showSnackBar(requireView(), getString(R.string.all_recipes_removed))
+                    true
+                }
             }
 
             else -> false

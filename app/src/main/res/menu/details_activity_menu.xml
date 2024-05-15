@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/shareRecipe"
-        android:icon="@drawable/ic_share"
+        android:icon="@drawable/ic_share2"
         app:showAsAction="always"
         tools:targetApi="o"
         android:title="@string/shareRecipe" />

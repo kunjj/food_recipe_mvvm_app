@@ -19,6 +19,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -69,15 +70,33 @@ class FoodRecipesViewModel @Inject constructor(
     var randomFoodJoke: MutableLiveData<NetworkResponse<FoodJoke>> = MutableLiveData()
 
     fun getRandomRecipes(queries: Map<String, String>) = viewModelScope.launch {
-        getSafeRandomRecipesApiCall(queries)
+        try {
+            withTimeout(10000) {
+                getSafeRandomRecipesApiCall(queries)
+            }
+        } catch (e: Exception) {
+            foodRecipesResponse.value = NetworkResponse.Error(e.message.toString())
+        }
     }
 
     fun searchFoodRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
-        getSafeSearchRecipesApiCall(searchQuery)
+        try {
+            withTimeout(10000) {
+                getSafeSearchRecipesApiCall(searchQuery)
+            }
+        } catch (e: Exception) {
+            searchRecipesResponse.value = NetworkResponse.Error(e.message.toString())
+        }
     }
 
     fun getFoodJoke(apiKey: String) = viewModelScope.launch {
-        getSafeFoodJokeApiCall(apiKey)
+        try {
+            withTimeout(10000) {
+                getSafeFoodJokeApiCall(apiKey)
+            }
+        } catch (e: Exception) {
+            randomFoodJoke.value = NetworkResponse.Error(e.message.toString())
+        }
     }
 
     private suspend fun getSafeFoodJokeApiCall(apiKey: String) {

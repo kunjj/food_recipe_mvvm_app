@@ -51,18 +51,6 @@ class RecipeBindingAdapter {
             }
         }
 
-        @BindingAdapter("numberOfLikes")
-        @JvmStatic
-        fun setNumbersOfLikes(textView: TextView, likes: Int) {
-            textView.text = likes.toString()
-        }
-
-        @BindingAdapter("timeToCook")
-        @JvmStatic
-        fun setTimeToCook(textView: TextView, time: Int) {
-            textView.text = time.toString()
-        }
-
         @BindingAdapter("isVegan")
         @JvmStatic
         fun isVegan(view: View, isVegan: Boolean) {

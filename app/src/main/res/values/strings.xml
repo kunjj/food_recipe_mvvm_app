@@ -46,6 +46,7 @@
     <string name="delete_recipe">Delete Favorite Recipe</string>
     <string name="delete_all_favorite_recipes">Delete All</string>
     <string name="all_recipes_removed">All recipes removed.</string>
+    <string name="theres_no_favorite_recipes">There\'s No Favorite Recipes.</string>
     <string name="share">Share Food Joke</string>
     <string name="shareRecipe">Share Recipe</string>
 </resources>
