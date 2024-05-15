@@ -5,6 +5,5 @@
         android:id="@+id/shareFoodJoke"
         android:icon="@drawable/ic_share"
         android:title="@string/share"
-        app:showAsAction="always"
-        android:iconTint="@color/white"/>
+        app:showAsAction="always" />
 </menu>

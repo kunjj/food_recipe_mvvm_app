@@ -4,16 +4,11 @@
         <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="android:textColor">@color/chip_text_color</item>
     </style>
-
-    <style name="DetailsActivityStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryDark">@color/green</item>
-        <item name="android:statusBarColor">@color/statusBarColor</item>
-    </style>
-
-    <style name="RecipesActivityStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="actionModeBackground">@color/green</item>
-        <item name="android:statusBarColor">@color/statusBarColor</item>
+    
+    <style name="SplashScreenStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
