@@ -1,13 +1,14 @@
 package com.example.foodrecipesapplication.bindingadapters
 
 import android.text.Html
-import android.util.Log
+import android.text.SpannableString
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import coil.load
@@ -68,9 +69,7 @@ class RecipeBindingAdapter {
                         )
                     )
                 }
-            }
-
-            else{
+            } else {
                 when (view) {
                     is TextView -> view.setTextColor(
                         ContextCompat.getColor(

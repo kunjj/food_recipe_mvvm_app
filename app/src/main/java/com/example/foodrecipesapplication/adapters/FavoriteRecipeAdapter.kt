@@ -66,8 +66,7 @@ class FavoriteRecipeAdapter(
                 toggleSelection(holder, recipe)
                 true
             } else {
-                multiSelection = false
-                false
+                true
             }
         }
 
@@ -82,6 +81,8 @@ class FavoriteRecipeAdapter(
                 holder.binding.clRecipe.findNavController().navigate(action)
             }
         }
+
+        saveScrollItemState(holder, recipe)
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
@@ -105,17 +106,22 @@ class FavoriteRecipeAdapter(
         return true
     }
 
-    override fun onDestroyActionMode(mode: ActionMode?) {
-        clearSelection()
+    override fun onDestroyActionMode(mode: ActionMode?) = clearSelection()
+
+    private fun saveScrollItemState(holder: RecipeViewHolder, currentRecipe: Recipe) {
+        if (selectedItems.contains(currentRecipe)) changeSelectedRecipeStyle(holder, R.color.green)
+        else changeSelectedRecipeStyle(
+            holder, R.color.strokeColor
+        )
     }
 
-    private fun toggleSelection(holder: RecipeViewHolder, recipe: Recipe) = apply {
-        if (selectedItems.contains(recipe)) {
-            selectedItems.remove(recipe)
-            changeSelectedRecipeStyle(holder, R.color.white)
+    private fun toggleSelection(holder: RecipeViewHolder, currentRecipe: Recipe) = apply {
+        if (selectedItems.contains(currentRecipe)) {
+            selectedItems.remove(currentRecipe)
+            changeSelectedRecipeStyle(holder, R.color.strokeColor)
             applyActionModeTitle()
         } else {
-            selectedItems.add(recipe)
+            selectedItems.add(currentRecipe)
             changeSelectedRecipeStyle(holder, R.color.green)
             applyActionModeTitle()
         }

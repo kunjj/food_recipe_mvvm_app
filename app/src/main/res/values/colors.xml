@@ -51,7 +51,7 @@
     <color name="ingredientsTextColor">@color/black</color>
 
     //Ingredients Row Stroke Color.
-    <color name="strokeColor">@color/darkGray</color>
+    <color name="strokeColor">@color/gray</color>
 
     //Food Joke Text Color.
     <color name="foodJokeTextColor">@color/black</color>

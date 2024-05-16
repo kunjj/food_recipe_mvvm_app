@@ -45,7 +45,9 @@
         tools:layout="@layout/fragment_recipes_filter">
         <action
             android:id="@+id/action_recipesFilterFragment_to_recipeFragment"
-            app:destination="@id/recipeFragment" />
+            app:destination="@id/recipeFragment"
+            app:popUpTo="@id/recipeFragment"
+            app:popUpToInclusive="true" />
     </dialog>
 
     <activity
