@@ -2,13 +2,17 @@ package com.example.foodrecipesapplication.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import com.example.foodrecipesapplication.R
 import com.example.foodrecipesapplication.databinding.FragmentFoodJokesBinding
 import com.example.foodrecipesapplication.network.NetworkResponse
@@ -21,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FoodJokesFragment : BaseFragment() {
     private var binding: FragmentFoodJokesBinding? = null
     private val foodRecipeViewModel by viewModels<FoodRecipesViewModel>()
+    private lateinit var menuHost: MenuHost
     var foodJoke = ""
 
     override fun onCreateView(
@@ -28,7 +33,7 @@ class FoodJokesFragment : BaseFragment() {
         savedInstanceState: Bundle?,
     ): View {
         this.binding = FragmentFoodJokesBinding.inflate(inflater, container, false)
-        setHasOptionsMenu(true)
+        this.menuHost = requireActivity()
         (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
         (activity as RecipeActivity).supportActionBar?.title =
             context?.getString(R.string.food_joke)
@@ -38,7 +43,7 @@ class FoodJokesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.foodRecipeViewModel.getFoodJoke(Constant.API_KEY)
-
+        setMenuBar()
         this.foodRecipeViewModel.randomFoodJoke.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResponse.Loading -> showProgressbar()
@@ -59,31 +64,36 @@ class FoodJokesFragment : BaseFragment() {
         }
     }
 
+    private fun setMenuBar() {
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) =
+                menuInflater.inflate(R.menu.food_joke_menu, menu)
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.shareFoodJoke -> {
+                        val shareIntent = Intent().apply {
+                            this.action = Intent.ACTION_SEND
+                            this.putExtra(Intent.EXTRA_TEXT, this@FoodJokesFragment.foodJoke)
+                            this.type = "text/plain"
+                        }
+                        startActivity(Intent.createChooser(shareIntent, "Share via"))
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
     private fun loadDataFromCache() {
         this.foodRecipeViewModel.readRandomJoke.observe(viewLifecycleOwner) {
             it?.foodJoke?.let { foodJoke ->
                 this.binding!!.foodJoke = foodJoke
+                Log.d("sdvv", foodJoke.text)
                 this.foodJoke = foodJoke.text
             }
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) =
-        menuInflater.inflate(R.menu.food_joke_menu, menu)
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.shareFoodJoke -> {
-                val shareIntent = Intent().apply {
-                    this.action = Intent.ACTION_SEND
-                    this.putExtra(Intent.EXTRA_TEXT, this@FoodJokesFragment.foodJoke)
-                    this.type = "text/plain"
-                }
-                startActivity(Intent.createChooser(shareIntent, "Share via"))
-                true
-            }
-
-            else -> false
         }
     }
 

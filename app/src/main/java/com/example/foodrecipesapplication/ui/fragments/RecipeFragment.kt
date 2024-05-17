@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,6 +32,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
     private val foodRecipesViewModel by lazy { (activity as RecipeActivity).foodRecipesViewModel }
     private val recipeViewModel by lazy { (activity as RecipeActivity).recipeViewModel }
     private val foodRecipeAdapter by lazy { FoodRecipeAdapter() }
+    private lateinit var menuHost: MenuHost
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
@@ -35,7 +40,7 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         this.binding = FragmentRecipeBinding.inflate(inflater)
         this.binding!!.recipesViewModel = this.foodRecipesViewModel
         this.binding!!.lifecycleOwner = this
-        setHasOptionsMenu(true)
+        this.menuHost = requireActivity()
         (activity as RecipeActivity).setSupportActionBar(binding!!.toolbar)
         (activity as RecipeActivity).supportActionBar?.title = context?.getString(R.string.recipes)
         return binding!!.root
@@ -44,8 +49,36 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
-        fetchDataFromDatabase()
+        setUpMenuBar()
         binding!!.btnFilterRecipe.setOnClickListener(this)
+        fetchDataFromDatabase()
+    }
+
+    private fun setUpMenuBar() {
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.recipe_search, menu)
+
+                val searchView = menu.findItem(R.id.search_recipes).actionView as SearchView
+                searchView.queryHint = requireActivity().getString(R.string.search_recipes)
+
+//        searchView.isSubmitButtonEnabled = true
+                val queryOnTextLister = object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        if (query != null) {
+                            searchFoodRecipes(query)
+                            return true
+                        }
+                        return false
+                    }
+                    override fun onQueryTextChange(newText: String?): Boolean = true
+                }
+                searchView.setOnQueryTextListener(queryOnTextLister)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean = true
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setUpRecyclerView() = binding!!.recyclerView.apply {
@@ -137,29 +170,6 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
                 )
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.recipe_search, menu)
-
-        val searchItem = menu.findItem(R.id.search_recipes)
-        val searchView = searchItem.actionView as SearchView
-        searchView.queryHint = requireActivity().getString(R.string.search_recipes)
-
-//        searchView.isSubmitButtonEnabled = true
-        val queryOnTextLister = object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    searchFoodRecipes(query)
-                    return true
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean = true
-        }
-
-        searchView.setOnQueryTextListener(queryOnTextLister)
     }
 
     override fun onDestroy() {

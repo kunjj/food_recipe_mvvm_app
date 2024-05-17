@@ -68,13 +68,12 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_sad"
-                android:alpha="0.7"/>
+                android:src="@drawable/ic_sad"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
+                android:textColor="@color/gray"
                 android:gravity="center"
                 android:text="@string/not_connected_to_internet"
                 android:textSize="24sp" />

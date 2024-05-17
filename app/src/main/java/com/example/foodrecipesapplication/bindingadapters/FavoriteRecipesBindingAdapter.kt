@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -16,24 +18,9 @@ class FavoriteRecipesBindingAdapter {
         @BindingAdapter("setDataVisibility")
         @JvmStatic
         fun setDataVisibility(view: View, favoriteRecipes: List<FavoriteRecipe>?) {
-            favoriteRecipes?.let {
-                if (it.isEmpty()) {
-                    when (view) {
-                        is ImageView -> view.visibility = View.VISIBLE
-
-                        is TextView -> view.visibility = View.VISIBLE
-
-                        is RecyclerView -> view.visibility = View.GONE
-                    }
-                } else {
-                    when (view) {
-                        is ImageView -> view.visibility = View.GONE
-
-                        is TextView -> view.visibility = View.GONE
-
-                        is RecyclerView -> view.visibility = View.VISIBLE
-                    }
-                }
+            when(view){
+                is RecyclerView -> view.isInvisible = favoriteRecipes.isNullOrEmpty()
+                else -> view.isVisible = favoriteRecipes.isNullOrEmpty()
             }
         }
 
