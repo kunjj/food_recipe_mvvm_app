@@ -16,7 +16,6 @@ interface FoodRecipeAPI {
 
     @GET("/food/jokes/random?")
     suspend fun getRandomFoodJoke(
-        @Query("apiKey") apiKey: String
+        @Query("apiKey") apiKey: String,
     ): Response<FoodJoke>
-
 }

@@ -1,7 +1,6 @@
 package com.example.foodrecipesapplication.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -38,36 +37,27 @@ class RecipeDetailsAdapter(private val context: Context, private val recipe: Rec
 
     override fun onBindViewHolder(holder: RecipeDetailsViewHolder, position: Int) {
         holder.binding.tvOption.text = this.details[position]
-        with(recipe){
-            if (vegan && position == 0){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+        with(recipe) {
+            if (vegan && position == 0) changeStyle(holder)
 
-            if(glutenFree && position == 1){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+            if (glutenFree && position == 1) changeStyle(holder)
 
-            if(vegetarian && position == 2){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+            if (vegetarian && position == 2) changeStyle(holder)
 
-            if(dairyFree && position == 3){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+            if (dairyFree && position == 3) changeStyle(holder)
 
-            if(cheap && position == 4){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+            if (cheap && position == 4) changeStyle(holder)
 
-            if(veryHealthy && position == 5){
-                holder.binding.tvOption.setTextColor(ContextCompat.getColor(context,R.color.green))
-                holder.binding.ivChecked.setColorFilter(ContextCompat.getColor(context,R.color.green))
-            }
+            if (veryHealthy && position == 5) changeStyle(holder)
         }
+    }
+
+    private fun changeStyle(holder: RecipeDetailsViewHolder) {
+        holder.binding.tvOption.setTextColor(ContextCompat.getColor(context, R.color.green))
+        holder.binding.ivChecked.setColorFilter(
+            ContextCompat.getColor(
+                context, R.color.green
+            )
+        )
     }
 }

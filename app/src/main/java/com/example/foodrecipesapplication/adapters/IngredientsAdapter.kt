@@ -51,7 +51,6 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
     override fun getItemCount(): Int = this.ingredients.currentList.size
 
-    override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) =
         holder.bind(this.ingredients.currentList[position])
-    }
 }

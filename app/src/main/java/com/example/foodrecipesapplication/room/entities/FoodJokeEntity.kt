@@ -7,9 +7,6 @@ import com.example.foodrecipesapplication.models.FoodJoke
 import com.example.foodrecipesapplication.utils.Constant
 import kotlinx.parcelize.Parcelize
 
-/**
- * Created by Kunjan on 10-05-2024.
- */
 @Entity(tableName = Constant.FOOD_JOKE_TABLE)
 @Parcelize
 data class FoodJokeEntity(

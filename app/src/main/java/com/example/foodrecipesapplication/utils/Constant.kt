@@ -39,6 +39,6 @@ object Constant {
     const val DIET_TYPE_ID = "dietTypeId"
 
     fun showSnackBar(view: View, message: String) = apply {
-        Snackbar.make(view,message, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
     }
 }

@@ -13,5 +13,5 @@ data class Equipment(
     @SerializedName("localizedName")
     val localizedName: String,
     @SerializedName("name")
-    val name: String
-): Parcelable
+    val name: String,
+) : Parcelable

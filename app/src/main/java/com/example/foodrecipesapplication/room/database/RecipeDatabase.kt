@@ -11,9 +11,12 @@ import com.example.foodrecipesapplication.room.entities.FoodJokeEntity
 import com.example.foodrecipesapplication.room.entities.FoodRecipeEntity
 import java.io.Serializable
 
-@Database(entities = [FoodRecipeEntity::class, FavoriteRecipe::class,FoodJokeEntity::class], version = 4, exportSchema = false)
-@TypeConverters(RecipesTypeConverter::class,FoodJokeConverter::class)
+@Database(
+    entities = [FoodRecipeEntity::class, FavoriteRecipe::class, FoodJokeEntity::class],
+    version = 4,
+    exportSchema = false
+)
+@TypeConverters(RecipesTypeConverter::class, FoodJokeConverter::class)
 abstract class RecipeDatabase : RoomDatabase(), Serializable {
     abstract fun recipesDao(): RecipesDao
-
 }

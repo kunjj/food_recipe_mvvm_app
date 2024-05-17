@@ -73,12 +73,12 @@ class DetailsActivity : AppCompatActivity() {
             }
 
             R.id.shareRecipe -> {
-                val shareIntent = Intent().apply{
+                val shareIntent = Intent().apply {
                     this.action = Intent.ACTION_SEND
-                    this.putExtra(Intent.EXTRA_TEXT,recipeUrl)
+                    this.putExtra(Intent.EXTRA_TEXT, recipeUrl)
                     this.type = "text/plain"
                 }
-                startActivity(Intent.createChooser(shareIntent,"Share Recipe Via"))
+                startActivity(Intent.createChooser(shareIntent, "Share Recipe Via"))
                 true
             }
 
@@ -104,7 +104,7 @@ class DetailsActivity : AppCompatActivity() {
         this.foodRecipesViewModel.favoriteRecipes.observe(this) { favoriteRecipes ->
             try {
                 for (favoriteRecipe in favoriteRecipes) {
-                    if (favoriteRecipe.recipe.id == args.recipe.id){
+                    if (favoriteRecipe.recipe.id == args.recipe.id) {
                         this.isRecipeSaved = true
                         changeIcon(
                             menuItem, this.isRecipeSaved

@@ -22,7 +22,7 @@
             motion:touchAnchorSide="bottom" />
     </Transition>
 
-    <ConstraintSet android:id="@+id/start"/>
+    <ConstraintSet android:id="@+id/start" />
 
     <ConstraintSet android:id="@+id/end">
         <Constraint

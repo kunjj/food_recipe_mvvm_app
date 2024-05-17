@@ -8,9 +8,8 @@ import com.example.foodrecipesapplication.viewmodels.RecipeViewModel
 
 class RecipeViewModelFactory(
     private val context: Context,
-    private val dataStoreHelper: DataStoreHelper
+    private val dataStoreHelper: DataStoreHelper,
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return RecipeViewModel(context, dataStoreHelper) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        RecipeViewModel(context, dataStoreHelper) as T
 }

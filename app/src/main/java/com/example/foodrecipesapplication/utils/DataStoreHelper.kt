@@ -24,7 +24,7 @@ class DataStoreHelper(val context: Context) {
     }
 
     suspend fun saveMealAndDietType(
-        mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int
+        mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int,
     ) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.mealType] = mealType
@@ -48,5 +48,5 @@ class DataStoreHelper(val context: Context) {
 }
 
 data class MealAndDietType(
-    val mealType: String, val mealTypeId: Int, val dietType: String, val dietTypeId: Int
+    val mealType: String, val mealTypeId: Int, val dietType: String, val dietTypeId: Int,
 )
