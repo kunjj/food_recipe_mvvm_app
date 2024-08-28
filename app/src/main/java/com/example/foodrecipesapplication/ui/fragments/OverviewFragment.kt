@@ -1,6 +1,7 @@
 package com.example.foodrecipesapplication.ui.fragments
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class OverviewFragment : Fragment() {
             adapter = RecipeDetailsAdapter(requireContext(), recipe)
             layoutManager = GridLayoutManager(requireContext(), 3)
         }
+        binding!!.tvSummary.movementMethod = LinkMovementMethod.getInstance()
     }
 
     override fun onDestroy() {

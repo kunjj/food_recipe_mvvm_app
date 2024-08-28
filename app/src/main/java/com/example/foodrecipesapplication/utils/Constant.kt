@@ -7,6 +7,7 @@ object Constant {
     const val API_KEY = "9fcf55dbef7a41859b3ecf56e7712abc"
     const val BASE_IMAGE_URL = "https://img.spoonacular.com/ingredients_100x100/"
     const val BASE_URL = "https://api.spoonacular.com"
+    const val SERVER_CLIENT_ID = "322001331106-q6v2mjhapk2tc3tjo1rspaf1ghpp02ta.apps.googleusercontent.com"
 
     //Room Database.
     const val DATABASE_NAME = "recipes_database"

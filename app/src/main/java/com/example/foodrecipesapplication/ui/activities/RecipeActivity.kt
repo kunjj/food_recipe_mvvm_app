@@ -28,7 +28,6 @@ class RecipeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme)
         binding = ActivityRecipeBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         val recipeViewModelFactory = RecipeViewModelFactory(this, DataStoreHelper(this))

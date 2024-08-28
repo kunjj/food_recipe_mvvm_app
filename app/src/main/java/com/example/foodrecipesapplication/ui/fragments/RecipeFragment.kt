@@ -118,9 +118,13 @@ class RecipeFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    private fun showShimmerEffect() = binding!!.recyclerView.showShimmer()
+    private fun showShimmerEffect() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
 
-    private fun stopShimmerEffect() = binding!!.recyclerView.hideShimmer()
+    private fun stopShimmerEffect() {
+        binding?.progressBar?.visibility = View.GONE
+    }
 
     override fun onClick(view: View?) {
         when (view!!.id) {
