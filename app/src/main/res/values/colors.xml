@@ -3,6 +3,7 @@
     <color name="colorPrimary">@color/green</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@color/green</color>
+    <color name="lightGreen">#53F4BF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#EFECEC</color>
@@ -59,6 +60,11 @@
     //Apply Button Background Color.
     <color name="applyButtonColor">@color/white</color>
     <color name="applyButtonStrokeColor">@color/green</color>
+
+    <color name="iconBackgroundColor">@color/transparent</color>
+
+    <color name="headingColor">@color/black</color>
+    <color name="descriptionColor">@color/darkGray</color>
 
     <color name="card_background_color">@color/white</color>
     <color name="title_color">@color/black</color>

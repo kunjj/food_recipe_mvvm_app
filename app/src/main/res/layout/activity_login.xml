@@ -15,16 +15,74 @@
         android:theme="@style/AppTheme"
         tools:context=".ui.activities.LoginActivity">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/signInButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/foodIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            app:buttonSize="wide"/>
+            android:src="@drawable/food"
+            app:layout_constraintBottom_toTopOf="@id/headingTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/headingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:text="@string/personalized_recipe_discovery"
+            android:textColor="@color/headingColor"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/descriptionTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/foodIV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/descriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:text="@string/tell_us_your_food_preferences_and_we_ll_only_serve_you_delicious_rec_pes_ideas"
+            android:textAlignment="center"
+            android:textColor="@color/descriptionColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/iconsLL"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headingTV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:id="@+id/iconsLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTV"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/googleSignInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/iconBackgroundColor"
+                android:src="@drawable/google" />
+
+            <ImageButton
+                android:id="@+id/facebookSignInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/iconBackgroundColor"
+                android:src="@drawable/facebook" />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

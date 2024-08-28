@@ -41,4 +41,6 @@
     <string name="share">Share Food Joke</string>
     <string name="shareRecipe">Share Recipe</string>
     <string name="your_web_client_id">322001331106-q6v2mjhapk2tc3tjo1rspaf1ghpp02ta.apps.googleusercontent.com</string>
+    <string name="personalized_recipe_discovery">Personalized recipe discovery</string>
+    <string name="tell_us_your_food_preferences_and_we_ll_only_serve_you_delicious_rec_pes_ideas">Tell us your food preferences and we\'ll only serve you delicious recípes ideas</string>
 </resources>
